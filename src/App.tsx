@@ -49,7 +49,6 @@ const detailProduct=detailId?products.find(p=>p.id===detailId):undefined;
 const visible=useMemo(()=>products.filter(p=>(category==='Tout'||p.category===category)&&p.name.toLowerCase().includes(search.toLowerCase())),[products,category,search]);
 const cartItems=products.filter(p=>cart[p.id]),cartCount=Object.values(cart).reduce((s,n)=>s+n,0),cartTotal=cartItems.reduce((s,p)=>s+p.price*cart[p.id],0);
 function selectCategory(c:Category){setCategory(c);setMenuOpen(false);document.getElementById('collection')?.scrollIntoView({behavior:'smooth'});}
-function add(id:string){setCart(c=>({...c,[id]:(c[id]||0)+1}));setNotice('Produit ajouté au panier');window.setTimeout(()=>setNotice(''),2200)}
 function qty(id:string,d:number){setCart(c=>{const n={...c,[id]:(c[id]||0)+d};if(n[id]<=0)delete n[id];return n})}
 function openProduct(id:string){window.location.href='/?product='+encodeURIComponent(id)}
 async function orderDirect(product:Product){
