@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import AdminPage from './Admin';
 import { Search, ShoppingBag, Menu, X, Heart, ArrowUpRight, Crown, Shirt, Baby, Sparkles, Plus, Minus, Trash2 } from 'lucide-react';
 type Category = 'Tout' | 'Femmes' | 'Hommes' | 'Enfants';
 type Product = {id:number;name:string;category:Exclude<Category,'Tout'>;price:number;oldPrice?:number;label?:string;image:string};
@@ -70,6 +71,7 @@ const money=(n:number)=>`${n.toLocaleString('fr-MA')} DH`;
 // بدّل هاد الرقم برقم واتساب ديالك بصيغة دولية بلا + ولا مسافات.
 const WHATSAPP_NUMBER = '212XXXXXXXXX';
 export default function App(){
+if (window.location.pathname.replace(/\\/+$/, '') === '/admin') return <AdminPage />;
 const [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useState(''),[cart,setCart]=useState<Record<number,number>>({}),[cartOpen,setCartOpen]=useState(false),[menuOpen,setMenuOpen]=useState(false),[favorites,setFavorites]=useState<number[]>([]),[notice,setNotice]=useState('');
 const [customerName,setCustomerName]=useState(''),[customerPhone,setCustomerPhone]=useState(''),[customerCity,setCustomerCity]=useState(''),[customerAddress,setCustomerAddress]=useState('');
 const visible=useMemo(()=>products.filter(p=>(category==='Tout'||p.category===category)&&p.name.toLowerCase().includes(search.toLowerCase())),[category,search]);
