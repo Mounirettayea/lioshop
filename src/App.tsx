@@ -7,7 +7,7 @@ type Product = {id:string;name:string;category:string;price:number;oldPrice?:num
 type DbProduct = {id:string|number;name:string;price:number|string;compare_at_price:number|string|null;image_url:string|null;category_id:string|null;is_active:boolean;stock_quantity?:number};
 type DbCategory = {id:string;name:string};
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
-const supabaseKey = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY as string | undefined;
+const supabaseKey = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY) as string | undefined;
 const db = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 const money=(n:number)=>`${n.toLocaleString('fr-MA')} DH`;
 // بدّل هاد الرقم برقم واتساب ديالك بصيغة دولية بلا + ولا مسافات.
