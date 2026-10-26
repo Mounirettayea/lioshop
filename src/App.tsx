@@ -78,7 +78,8 @@ function orderWhatsApp(){
   const message=`🛍️ طلب جديد من LioShop.ma\n\nالمنتجات:\n${orderLines}\n\nالمجموع: ${money(cartTotal)}\n\nمعلومات الزبون:\nالاسم: ${customerName}\nالهاتف: ${customerPhone}\nالمدينة: ${customerCity}\nالعنوان: ${customerAddress}\n\nالمرجو تأكيد الطلب ومصاريف التوصيل.`;
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
 }
-\nif(detailId){
+
+if(detailId){
   if(productsLoading)return <div className="site-shell"><div className="detail-loading">كنحمّلو تفاصيل المنتج...</div></div>;
   if(!detailProduct)return <div className="site-shell"><div className="product-detail-page"><button className="detail-back" onClick={()=>window.location.href='/'}>← الرجوع للمتجر</button><p className="empty-state">{productsError||'هاد المنتج ما لقيناهش أو ما بقاش متوفر.'}</p></div></div>;
   const gallery=detailProduct.images.length?detailProduct.images:[detailProduct.image];
