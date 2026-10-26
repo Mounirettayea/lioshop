@@ -1,5 +1,7 @@
-import { FormEvent, useEffect, useState } from 'react';
-import { createClient, User } from '@supabase/supabase-js';
+import { useEffect, useState } from 'react';
+import type { FormEvent } from 'react';
+import { createClient } from '@supabase/supabase-js';
+import type { User } from '@supabase/supabase-js';
 import { ArrowLeft, LogOut, Plus, Pencil, Trash2, RefreshCw } from 'lucide-react';
 import './admin.css';
 const url = import.meta.env.VITE_SUPABASE_URL as string | undefined;
