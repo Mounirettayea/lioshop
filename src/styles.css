@@ -116,3 +116,68 @@ body,.site-shell{background:#fff;color:#29252a}
 .detail-order-form{border-color:var(--line)}.detail-order-form h2{color:#29252a}.detail-total{border-color:#eee6e7}.detail-total b{color:#7f1424}
 .detail-small-note{color:#777078}.detail-loading{color:#7f1424}
 @media(max-width:700px){.nav{background:#fff;border-color:#eee6e7}.search-box:focus-within{background:#fff;border-color:#eee6e7}}
+
+
+/* Commercial fashion storefront — LioShop */
+:root{--lio-red:#8b1028;--lio-red-dark:#650b1d;--lio-ink:#191719;--lio-pink:#fbf3f4;--gold:var(--lio-red);--line:rgba(139,16,40,.15)}
+.announcement{height:34px;background:var(--lio-red-dark);color:#fff;font-size:10px;letter-spacing:1.2px}
+.header{position:sticky;top:0;box-shadow:0 4px 18px rgba(30,12,16,.045)}
+.header-actions{gap:15px}
+.cart-trigger{width:39px;height:39px;border:1px solid #eee1e4;border-radius:50%;transition:background .2s,color .2s}
+.cart-trigger:hover{background:var(--lio-red);color:#fff}
+.cart-count{right:-3px;top:-2px;background:var(--lio-red);color:#fff;border:2px solid #fff}
+.hero{min-height:520px}
+.hero-content{max-width:560px}
+.hero h1{font-size:clamp(46px,6.2vw,82px);letter-spacing:-2px}
+.hero .gold-button{min-height:52px;padding:0 23px}
+.hero-badge{border-radius:2px;box-shadow:0 12px 30px rgba(60,10,24,.08)}
+.deal-banner{margin:26px auto 0;width:calc(100% - 12.2%);padding:24px clamp(20px,4vw,52px);display:flex;align-items:center;justify-content:space-between;gap:22px;background:var(--lio-red);color:#fff;position:relative;overflow:hidden}
+.deal-banner:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.16);border-radius:50%;right:17%;top:-135px;pointer-events:none}
+.deal-copy{display:grid;gap:6px;position:relative;z-index:1}
+.deal-kicker{font-size:9px;font-weight:800;letter-spacing:2px;color:#f6d9df}
+.deal-copy strong{font-size:clamp(20px,2.6vw,30px);letter-spacing:-.6px}
+.deal-copy strong em{font-style:normal;color:#ffdce3}
+.deal-note{font-size:11px;color:#f5dce1}
+.deal-banner>button{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:0 18px;border:1px solid #fff;background:#fff;color:var(--lio-red-dark);font-size:10px;font-weight:800;white-space:nowrap;transition:.2s}
+.deal-banner>button:hover{background:transparent;color:#fff}
+.category-strip{margin-top:0}
+.category-card{transition:background .2s,transform .2s}
+.category-card:hover{background:#fbf3f4}
+.collection{scroll-margin-top:96px}
+.product-grid{gap:30px 17px}
+.product-image-wrap{border-radius:2px}
+.product-image-wrap>img{transition:transform .4s,filter .3s}
+.product-card:hover .product-image-wrap>img{transform:scale(1.035);filter:saturate(1.04)}
+.product-label{background:var(--lio-red);color:#fff;font-size:9px;font-weight:800;letter-spacing:.6px;border-radius:1px}
+.quick-add{opacity:1;transform:none;left:8px;right:8px;bottom:8px;min-height:42px;background:#fff;color:var(--lio-red-dark);border:1px solid rgba(139,16,40,.22);box-shadow:0 4px 14px rgba(20,10,12,.08);font-size:9px;letter-spacing:.45px}
+.quick-add:hover{background:var(--lio-red);color:#fff;border-color:var(--lio-red)}
+.product-card h3{cursor:pointer;line-height:1.5}
+.price-row b,.detail-price b{color:var(--lio-red-dark)}
+.price-row del{color:#8d8589}
+.outline-button{min-height:46px;padding:0 25px;font-size:10px}
+.newsletter{border-radius:2px}
+.footer-links .admin-entry{display:inline-flex;align-items:center;gap:4px}
+.cart-drawer{box-shadow:-12px 0 45px rgba(20,10,12,.12)}
+.checkout{border-radius:2px}
+@media(max-width:700px){
+ .announcement{height:30px;font-size:7px;letter-spacing:.7px}
+ .header{position:sticky;top:0}
+ .header-actions{gap:9px}
+ .cart-trigger{width:35px;height:35px}
+ .hero{min-height:530px;height:570px}
+ .hero h1{font-size:clamp(43px,12vw,58px)}
+ .deal-banner{width:calc(100% - 10%);margin-top:16px;padding:20px 17px;align-items:flex-start;flex-direction:column;gap:14px}
+ .deal-copy strong{font-size:24px}
+ .deal-note{line-height:1.6}
+ .deal-banner>button{width:100%;min-height:45px}
+ .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:23px 11px}
+ .product-image-wrap{height:auto;aspect-ratio:3/4}
+ .quick-add{left:5px;right:5px;bottom:5px;min-height:36px;font-size:8px;padding:0 4px;gap:5px}
+ .product-label{left:6px;top:6px;padding:6px;font-size:7px}
+ .favorite{right:6px;top:6px;width:29px;height:29px}
+ .product-card h3{font-size:11px}
+ .product-meta{font-size:8px;margin-top:11px}
+ .price-row{font-size:11px;gap:6px}
+ .cart-drawer{padding:20px 17px}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
