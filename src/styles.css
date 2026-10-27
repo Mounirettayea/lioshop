@@ -181,3 +181,39 @@ body,.site-shell{background:#fff;color:#29252a}
  .cart-drawer{padding:20px 17px}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+
+/* First-screen conversion spotlight: lead with the best-selling product */
+.bestseller-spotlight{width:100%;max-width:1440px;margin:0 auto;padding:clamp(24px,4vw,54px) 7%;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(26px,5vw,76px);align-items:center;background:linear-gradient(120deg,#fff 0%,#fff 62%,#fbf3f4 100%);border-bottom:1px solid #f0e5e7}
+.bestseller-visual{position:relative;min-width:0;aspect-ratio:1.12/1;background:#f5eff0;overflow:hidden;max-height:500px}
+.bestseller-visual>img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;transition:transform .5s}
+.bestseller-visual:hover>img{transform:scale(1.025)}
+.bestseller-ribbon{position:absolute;top:16px;left:16px;background:var(--lio-red-dark,#650b1d);color:#fff;padding:11px 15px;font-size:10px;letter-spacing:1px;font-weight:800;box-shadow:0 5px 18px #00000015}
+.bestseller-copy{max-width:520px;padding:8px 0}
+.bestseller-overline{margin:22px 0 8px;color:var(--lio-red,#8b1028);font-size:10px;letter-spacing:2px;font-weight:800}
+.bestseller-copy h1{margin:0;color:#191719;font-size:clamp(32px,4.3vw,58px);line-height:1.12;letter-spacing:-1.4px;overflow-wrap:anywhere}
+.bestseller-description{margin:17px 0 22px;color:#70676c;font-size:14px;line-height:1.9;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.bestseller-price{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 25px}
+.bestseller-price strong{font-size:clamp(23px,2.5vw,32px);color:var(--lio-red-dark,#650b1d)}
+.bestseller-price del{font-size:15px;color:#91868b}
+.bestseller-discount{background:#8b1028;color:#fff;padding:5px 8px;font-size:10px;font-weight:800}
+.bestseller-actions{display:flex;gap:11px;flex-wrap:wrap}
+.bestseller-actions .gold-button,.bestseller-add{min-height:50px;padding:0 21px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-size:12px;font-weight:800;cursor:pointer}
+.bestseller-add{background:#fff;color:#650b1d;border:1px solid #d9bfc5;transition:background .2s,color .2s}
+.bestseller-add:hover{background:#650b1d;color:#fff}
+.bestseller-trust{display:flex;gap:20px;flex-wrap:wrap;margin-top:23px;color:#746970;font-size:11px}
+.bestseller-trust span:first-child{color:#650b1d}
+@media(max-width:700px){
+ .bestseller-spotlight{padding:17px 5% 24px;grid-template-columns:minmax(0,1fr);gap:18px}
+ .bestseller-visual{aspect-ratio:1.12/1;max-height:350px}
+ .bestseller-ribbon{top:10px;left:10px;padding:9px 11px;font-size:9px}
+ .bestseller-copy{padding:0 2px}
+ .bestseller-overline{margin:5px 0 7px;font-size:9px}
+ .bestseller-copy h1{font-size:clamp(28px,8vw,38px);letter-spacing:-.7px}
+ .bestseller-description{font-size:12px;line-height:1.7;margin:10px 0 14px;-webkit-line-clamp:2}
+ .bestseller-price{margin-bottom:16px}
+ .bestseller-price strong{font-size:25px}
+ .bestseller-actions{display:grid;grid-template-columns:1fr 1fr}
+ .bestseller-actions .gold-button,.bestseller-add{padding:0 10px;min-height:47px;font-size:11px}
+ .bestseller-trust{margin-top:15px;gap:14px;font-size:10px}
+}
