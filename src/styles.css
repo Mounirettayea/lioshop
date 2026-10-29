@@ -217,3 +217,61 @@ body,.site-shell{background:#fff;color:#29252a}
  .bestseller-actions .gold-button,.bestseller-add{padding:0 10px;min-height:47px;font-size:11px}
  .bestseller-trust{margin-top:15px;gap:14px;font-size:10px}
 }
+
+
+/* LioShop light luxury theme: white primary, gold secondary */
+:root{color:#24211b;background:#fff;--gold:#b89445;--black:#fff;--muted:#77736b;--line:rgba(184,148,69,.25)}
+body,.site-shell{background:#fff;color:#24211b}
+.announcement{background:#b89445;color:#fff}
+.header{background:#fff;border-bottom-color:#e9e4d9;color:#24211b}
+.brand-name{color:#24211b}
+.nav button,.nav a{color:#514b40}
+.nav button:hover,.nav a:hover{color:#a27b2e}
+.search-box{color:#6e675b;border-bottom-color:#d8d0c0}
+.search-box input{color:#24211b}
+.search-box input::placeholder{color:#8b8579}
+.icon-button{color:#24211b}
+.cart-count,.product-label{background:#b89445;color:#fff}
+.hero-image{filter:saturate(.72) brightness(1.03)}
+.hero-shade{background:linear-gradient(90deg,rgba(255,255,255,.97),rgba(255,255,255,.88) 33%,rgba(255,255,255,.36) 67%,rgba(255,255,255,.08)),linear-gradient(0deg,rgba(255,255,255,.24),transparent 30%)}
+.hero h1{color:#24211b}
+.hero-content>p{color:#5f594f}
+.hero-note{color:#655f54}
+.hero-badge{background:rgba(255,255,255,.9);border-color:#b89445;color:#9a762e}
+.category-card{color:#29251f}
+.category-card:hover{background:rgba(184,148,69,.07)}
+.category-icon{color:#a27b2e;border-color:var(--line)}
+.category-card small,.section-heading>p,.product-meta,.price-row del{color:#77736b}
+.filters{border-bottom-color:#e8e2d7}
+.filter{color:#77736b}
+.filter.active{color:#9a762e;border-bottom-color:#b89445}
+.product-image-wrap{background:#f5f2eb}
+.favorite{background:rgba(255,255,255,.92);color:#514b40}
+.favorite-active{color:#a27b2e}
+.quick-add{background:rgba(255,255,255,.95);border-color:#b89445;color:#8f6c26}
+.price-row b{color:#24211b}
+.outline-button{color:#98732b;border-color:#b89445}
+.outline-button:hover{background:#b89445;color:#fff}
+.promise-item p{color:#77736b}
+.newsletter{background:#faf8f3;border-color:var(--line)}
+.newsletter form label{color:#514b40}
+.email-field{border-bottom-color:#c9b98f}
+.email-field input{color:#24211b}
+.email-field input::placeholder{color:#8b8579}
+.newsletter form small{color:#77736b}
+.footer{border-top-color:#e9e4d9}
+.footer>p,.footer-links a{color:#6f695e}
+.copyright{border-top-color:#e9e4d9;color:#77736b}
+.toast{background:#b89445;color:#fff}
+.drawer-backdrop{background:rgba(25,22,16,.38)}
+.cart-drawer{background:#fff;color:#24211b;border-left-color:var(--line)}
+.drawer-head{border-bottom-color:var(--line)}
+.cart-empty h3{color:#24211b}
+.cart-empty p{color:#77736b}
+.cart-line{border-bottom-color:#eee8dc}
+.quantity button{border-color:#d8d0c0;color:#514b40}
+.remove-item{color:#77736b}
+.cart-bottom{border-top-color:var(--line)}
+.cart-bottom>p{color:#77736b}
+.subtotal b{color:#98732b}
+@media(max-width:700px){.nav{background:#fff}.search-box:focus-within{background:#fff}}
