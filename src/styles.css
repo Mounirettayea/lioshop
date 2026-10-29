@@ -282,3 +282,8 @@ body,.site-shell{background:#fff;color:#24211b}
 .section-heading h2.brand-slogan .slogan-black{color:#111111}
 .section-heading h2.brand-slogan .slogan-red{color:#e02027}
 @media(max-width:700px){.section-heading h2.brand-slogan{font-size:clamp(31px,8vw,45px);gap:0.14em;line-height:1.08;letter-spacing:-0.045em}}
+
+
+/* Premium LioShop logo above the collection headline */
+.collection-logo{display:block;width:clamp(190px,28vw,300px);height:auto;max-height:112px;object-fit:contain;object-position:left center;margin:0 0 20px -8px;filter:drop-shadow(0 5px 10px rgba(183,128,20,.12))}
+@media(max-width:700px){.collection-logo{width:clamp(175px,58vw,245px);max-height:94px;margin:0 0 16px -5px}}
