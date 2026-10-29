@@ -287,3 +287,33 @@ body,.site-shell{background:#fff;color:#24211b}
 /* Premium LioShop logo above the collection headline */
 .collection-logo{display:block;width:clamp(190px,28vw,300px);height:auto;max-height:112px;object-fit:contain;object-position:left center;margin:0 0 20px -8px;filter:drop-shadow(0 5px 10px rgba(183,128,20,.12))}
 @media(max-width:700px){.collection-logo{width:clamp(175px,58vw,245px);max-height:94px;margin:0 0 16px -5px}}
+
+
+/* Make the supplied LioShop logo prominent across desktop and mobile */
+.brand-logo{
+  display:block;
+  width:clamp(150px,16vw,205px);
+  height:64px;
+  max-width:none;
+  flex:0 0 auto;
+  object-fit:contain;
+  object-position:left center;
+}
+.header .brand,.detail-header .brand{
+  min-width:0;
+  flex:0 0 auto;
+}
+.header .brand{margin-right:clamp(10px,2vw,26px)}
+.detail-header .brand-logo{width:clamp(155px,18vw,220px)}
+.footer .brand-logo{width:clamp(150px,17vw,190px);height:58px}
+@media(max-width:1000px){
+  .brand-logo{width:clamp(140px,18vw,175px);height:58px}
+  .header .brand{margin-right:8px}
+}
+@media(max-width:700px){
+  .header{gap:9px}
+  .brand-logo{width:clamp(125px,36vw,165px);height:52px}
+  .header .brand{margin-right:auto}
+  .detail-header .brand-logo{width:clamp(125px,37vw,160px);height:50px}
+  .footer .brand-logo{width:155px;height:54px}
+}
