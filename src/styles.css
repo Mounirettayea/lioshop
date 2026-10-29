@@ -275,3 +275,10 @@ body,.site-shell{background:#fff;color:#24211b}
 .cart-bottom>p{color:#77736b}
 .subtotal b{color:#98732b}
 @media(max-width:700px){.nav{background:#fff}.search-box:focus-within{background:#fff}}
+
+
+/* Bold, high-contrast collection headline */
+.section-heading h2.brand-slogan{display:flex;flex-wrap:wrap;align-items:baseline;gap:0.18em;font-family:'DM Sans',sans-serif;font-size:clamp(38px,5.5vw,68px);font-weight:900;line-height:1.02;letter-spacing:-0.055em;margin-top:18px;text-transform:uppercase}
+.section-heading h2.brand-slogan .slogan-black{color:#111111}
+.section-heading h2.brand-slogan .slogan-red{color:#e02027}
+@media(max-width:700px){.section-heading h2.brand-slogan{font-size:clamp(31px,8vw,45px);gap:0.14em;line-height:1.08;letter-spacing:-0.045em}}
