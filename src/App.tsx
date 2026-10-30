@@ -4,8 +4,8 @@ import AdminPage from './Admin';
 import logo from './logo.png';
 import { Search, ShoppingBag, Menu, X, Heart, ArrowUpRight, Crown, Sparkles, Plus, Minus, Trash2 } from 'lucide-react';
 type Category = 'Tout' | 'Femmes' | 'Hommes' | 'Enfants';
-type Product = {id:string;name:string;category:string;price:number;oldPrice?:number;label?:string;image:string;images:string[];video?:string;description:string;sizes:string[];colors:string[];isNewArrival?:boolean;isBestSeller?:boolean;isPromotion?:boolean};
-type DbProduct = {id:string|number;name:string;description?:string|null;price:number|string;compare_at_price:number|string|null;image_url:string|null;image_urls?:string[]|null;images?:string[]|null;video_url?:string|null;sizes?:string[]|null;colors?:string[]|null;category_id:string|null;is_active:boolean;stock_quantity?:number;is_new_arrival:boolean;is_best_seller:boolean;is_promotion:boolean};
+type Product = {id:string;name:string;source?:string;category:string;price:number;oldPrice?:number;label?:string;image:string;images:string[];video?:string;description:string;sizes:string[];colors:string[];isNewArrival?:boolean;isBestSeller?:boolean;isPromotion?:boolean};
+type DbProduct = {id:string|number;name:string;description?:string|null;source?:string|null;price:number|string;compare_at_price:number|string|null;image_url:string|null;image_urls?:string[]|null;images?:string[]|null;video_url?:string|null;sizes?:string[]|null;colors?:string[]|null;category_id:string|null;is_active:boolean;stock_quantity?:number;is_new_arrival:boolean;is_best_seller:boolean;is_promotion:boolean};
 type DbCategory = {id:string;name:string};
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const supabaseKey = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.meta.env.VITE_SUPABASE_ANON_KEY) as string | undefined;
@@ -22,7 +22,7 @@ useEffect(()=>{
   async function loadProducts(){
     if(!db){setProductsError('خاص إعداد VITE_SUPABASE_URL و VITE_SUPABASE_PUBLISHABLE_KEY فـ Vercel باش يبانوا المنتجات.');setProductsLoading(false);return;}
     const [productResult,categoryResult]=await Promise.all([
-      db.from('products').select('id,name,description,price,compare_at_price,image_url,image_urls,images,video_url,sizes,colors,category_id,is_active,stock_quantity,is_new_arrival,is_best_seller,is_promotion').eq('is_active',true).order('created_at',{ascending:false}),
+      db.from('products').select('id,name,description,source,price,compare_at_price,image_url,image_urls,images,video_url,sizes,colors,category_id,is_active,stock_quantity,is_new_arrival,is_best_seller,is_promotion').eq('is_active',true).order('created_at',{ascending:false}),
       db.from('categories').select('id,name')
     ]);
     if(cancelled)return;
@@ -36,7 +36,7 @@ useEffect(()=>{
       const oldPrice=p.compare_at_price==null?undefined:Number(p.compare_at_price);
       const gallery=(p.image_urls?.length?p.image_urls:p.images?.length?p.images:p.image_url?[p.image_url]:[]).filter(Boolean);
       const fallback='https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80';
-      return {id:String(p.id),name:p.name,description:p.description||'',category:displayCategory,price,oldPrice,images:gallery,image:gallery[0]||p.image_url||fallback,video:p.video_url||undefined,sizes:p.sizes||[],colors:p.colors||[],label:(p.is_promotion||(oldPrice!==undefined&&oldPrice>price))?'PROMOTION':p.is_new_arrival?'NOUVEAUTÉ':p.is_best_seller?'BEST-SELLER':undefined,isNewArrival:p.is_new_arrival,isBestSeller:p.is_best_seller,isPromotion:p.is_promotion} as Product;
+      return {id:String(p.id),name:p.name,source:p.source||'',description:p.description||'',category:displayCategory,price,oldPrice,images:gallery,image:gallery[0]||p.image_url||fallback,video:p.video_url||undefined,sizes:p.sizes||[],colors:p.colors||[],label:(p.is_promotion||(oldPrice!==undefined&&oldPrice>price))?'PROMOTION':p.is_new_arrival?'NOUVEAUTÉ':p.is_best_seller?'BEST-SELLER':undefined,isNewArrival:p.is_new_arrival,isBestSeller:p.is_best_seller,isPromotion:p.is_promotion} as Product;
     });
     setProducts(mapped);setProductsLoading(false);
   }
@@ -75,7 +75,7 @@ function orderWhatsApp(){
     setNotice('بدّل رقم واتساب في الكود قبل استقبال الطلبات');
     return;
   }
-  const orderLines=cartItems.map(p=>`- ${p.name} | الكمية: ${cart[p.id]} | الثمن: ${money(p.price*cart[p.id])}`).join('\n');
+  const orderLines=cartItems.map(p=>`- ${p.name} | الكمية: ${cart[p.id]} | الثمن: ${money(p.price*cart[p.id])}\n  المصدر: ${p.source?.trim()||'غير محدد'}`).join('\n');
   const message=`🛍️ طلب جديد من LioShop.ma\n\nالمنتجات:\n${orderLines}\n\nالمجموع: ${money(cartTotal)}\n\nمعلومات الزبون:\nالاسم: ${customerName}\nالهاتف: ${customerPhone}\nالمدينة: ${customerCity}\nالعنوان: ${customerAddress}\n\nالمرجو تأكيد الطلب ومصاريف التوصيل.`;
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
 }
