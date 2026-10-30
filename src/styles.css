@@ -367,3 +367,9 @@ body,.site-shell{background:#fff;color:#24211b}
 .featured-best-product>img{width:100%;height:190px;object-fit:cover;border-radius:6px}.featured-best-info{display:flex;flex-direction:column;align-items:flex-start;gap:9px}.featured-best-tag{font-size:9px;letter-spacing:1px;font-weight:800;color:#9b1730}.featured-best-info strong{font-size:17px;line-height:1.3}.featured-best-info>b{font-size:17px;color:#111}.featured-best-cta{display:inline-flex;align-items:center;gap:7px;background:#8e1428;color:white;padding:10px 14px;font-size:12px;font-weight:700}.featured-best-loading{padding:25px;color:#777}
 .lioshowcase-slogan{display:flex;flex-direction:column;gap:4px;margin:-7px 0 16px;color:#8e1428;text-shadow:0 1px 8px rgba(255,255,255,.85)}.lioshowcase-slogan strong{font-size:clamp(9px,1.1vw,13px);letter-spacing:1.3px;color:#171717}.lioshowcase-slogan span{font-size:clamp(12px,1.5vw,17px);font-weight:800;direction:rtl;text-align:left}
 @media(max-width:700px){.featured-best-seller{grid-template-columns:1fr;gap:14px;padding:22px 0 25px;margin-bottom:16px}.featured-best-copy h2{font-size:28px;margin:8px 0 3px}.featured-best-copy p{font-size:19px}.featured-best-product{grid-template-columns:42% 1fr;gap:12px;padding:8px}.featured-best-product>img{height:160px}.featured-best-info strong{font-size:15px}.featured-best-cta{padding:9px 11px;font-size:11px}.lioshowcase-slogan{margin:-5px 0 10px;gap:3px}.lioshowcase-slogan strong{font-size:8px;letter-spacing:.7px}.lioshowcase-slogan span{font-size:12px}}
+
+
+/* Exact supplied LioShop banner: preserve its complete artwork on every screen */
+.lioshowcase-image-link{display:block;width:100%;line-height:0;overflow:hidden;background:#050505}
+.lioshowcase-image-link img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
+.lioshowcase-image-link:focus-visible{outline:3px solid #c9a24d;outline-offset:3px}
