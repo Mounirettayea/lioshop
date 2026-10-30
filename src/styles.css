@@ -343,3 +343,19 @@ body,.site-shell{background:#fff;color:#24211b}
 }
 
 .detail-main-image video{display:block;width:100%;height:100%;max-height:720px;object-fit:contain;background:#111}.video-thumb{position:relative;display:block;width:100%;height:100%}.video-thumb img{width:100%;height:100%;object-fit:cover;filter:brightness(.7)}.video-thumb>span{position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:25px;text-shadow:0 1px 8px #000}
+
+/* LioShop family-fashion hero banner */
+.lioshowcase{position:relative;isolation:isolate;min-height:390px;height:clamp(310px,43vw,520px);overflow:hidden;background:#f7f5f0;color:#111;display:flex;align-items:center;border-bottom:5px solid #8d1023}
+.lioshowcase-photo{position:absolute;inset:0 0 0 25%;z-index:-2;background-image:linear-gradient(90deg,#f7f5f0 0%,rgba(247,245,240,.92) 18%,rgba(247,245,240,.05) 53%),url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1800&q=88');background-size:cover;background-position:center 38%}
+.lioshowcase-brand{position:absolute;left:0;top:0;bottom:0;width:34%;z-index:-1;background:linear-gradient(135deg,#080808 0%,#15120c 75%,#241b0c 100%);border-right:10px solid #d2a64f;clip-path:ellipse(88% 82% at 12% 50%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:25px 7% 25px 3%;color:#d9b45f;text-align:center}
+.lioshowcase-brand img{width:min(72%,245px);max-height:70%;object-fit:contain;mix-blend-mode:normal}
+.lioshowcase-brand>span{font-size:8px;letter-spacing:2.4px;margin-top:8px;color:#e6c879;font-weight:700}
+.lioshowcase-cats{display:flex;gap:17px;margin-top:19px;font-size:8px;letter-spacing:1.3px;color:#d7b35f}
+.lioshowcase-copy{position:relative;margin-left:37%;width:31%;z-index:1;padding:20px 0}
+.lioshowcase-kicker{font-size:9px;font-weight:700;letter-spacing:3px;color:#8e1428}
+.lioshowcase-copy h1{font-family:'Playfair Display',serif;font-size:clamp(33px,4.3vw,61px);font-weight:700;line-height:.98;letter-spacing:-1.8px;margin:17px 0 9px;color:#111}
+.lioshowcase-copy p{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(24px,3vw,40px);line-height:1.04;color:#8e1428;margin:0 0 20px}
+.lioshowcase-copy button{display:inline-flex;align-items:center;gap:9px;border:0;background:#8e1428;color:white;padding:13px 16px;font-size:8px;font-weight:700;letter-spacing:1px}
+.lioshowcase-bottom{position:absolute;bottom:16px;left:50%;display:flex;gap:8px}.lioshowcase-bottom span{width:9px;height:9px;border-radius:50%;background:#aaa}.lioshowcase-bottom span:first-child{background:#c59a43}
+@media(max-width:700px){.lioshowcase{height:270px;min-height:270px;border-bottom-width:4px}.lioshowcase-photo{inset:0 0 0 24%;background-position:58% center;background-image:linear-gradient(90deg,#f7f5f0 0%,rgba(247,245,240,.86) 18%,rgba(247,245,240,.05) 57%),url('https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1000&q=85')}.lioshowcase-brand{width:37%;padding:14px 7% 14px 1%;border-right-width:6px}.lioshowcase-brand img{width:90%;max-height:54%}.lioshowcase-brand>span{font-size:6px;letter-spacing:1px;margin-top:5px}.lioshowcase-cats{gap:7px;margin-top:12px;font-size:5px;letter-spacing:.5px}.lioshowcase-copy{margin-left:39%;width:49%;padding:12px 0}.lioshowcase-kicker{font-size:7px;letter-spacing:1.7px}.lioshowcase-copy h1{font-size:clamp(25px,7vw,38px);margin:10px 0 6px;letter-spacing:-1px}.lioshowcase-copy p{font-size:clamp(19px,5.5vw,29px);margin-bottom:12px}.lioshowcase-copy button{font-size:6px;padding:10px 9px;gap:5px}.lioshowcase-bottom{bottom:10px;left:49%;gap:5px}.lioshowcase-bottom span{width:6px;height:6px}}
+@media(max-width:380px){.lioshowcase{height:235px;min-height:235px}.lioshowcase-brand{width:35%}.lioshowcase-copy{margin-left:37%;width:53%}.lioshowcase-copy h1{font-size:25px}.lioshowcase-copy p{font-size:19px}}
