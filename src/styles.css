@@ -373,3 +373,27 @@ body,.site-shell{background:#fff;color:#24211b}
 .lioshowcase-image-link{display:block;width:100%;line-height:0;overflow:hidden;background:#050505}
 .lioshowcase-image-link img{display:block;width:100%;height:auto;max-width:100%;object-fit:contain}
 .lioshowcase-image-link:focus-visible{outline:3px solid #c9a24d;outline-offset:3px}
+
+
+/* Animated golden promotion + scroll invitation banner */
+.promo-scroll-banner{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;gap:clamp(10px,3vw,34px);width:100%;min-height:142px;padding:18px clamp(12px,4vw,38px);box-sizing:border-box;overflow:hidden;text-decoration:none;color:#fff;background:radial-gradient(ellipse at 50% 120%,rgba(255,205,92,.48),transparent 55%),linear-gradient(105deg,#080706 0%,#211707 48%,#080706 100%);border-top:2px solid #e4bd61;border-bottom:3px solid #c99b3e;box-shadow:inset 0 0 30px rgba(255,190,60,.18)}
+.promo-scroll-banner:before,.promo-scroll-banner:after{content:"";position:absolute;inset:-60% -20%;z-index:-1;pointer-events:none;background-image:radial-gradient(circle,rgba(255,224,145,.95) 0 1px,transparent 2px),radial-gradient(circle,rgba(255,255,255,.75) 0 1px,transparent 2px);background-size:43px 39px,67px 59px;background-position:0 0,22px 17px;opacity:.5;animation:promo-twinkle 3s linear infinite}
+.promo-scroll-banner:after{transform:rotate(12deg);opacity:.3;animation-duration:5s}
+.promo-glow{position:absolute;inset:auto -10% -65px;height:110px;z-index:-1;background:#d99e31;filter:blur(38px);opacity:.28}
+.promo-stars{position:absolute;top:9px;left:0;width:100%;text-align:center;color:#f7d77f;font-size:clamp(13px,2vw,22px);letter-spacing:5px;white-space:nowrap;text-shadow:0 0 12px #ffcf63;animation:promo-star-pulse 1.8s ease-in-out infinite alternate}
+.promo-discount{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;width:clamp(62px,10vw,94px);height:clamp(62px,10vw,94px);background:linear-gradient(145deg,#f13a43,#a90020);border:2px solid #ffdf9a;box-shadow:0 5px 22px rgba(0,0,0,.45);transform:rotate(-9deg);border-radius:9px}
+.promo-discount b{font-size:clamp(29px,5vw,45px);line-height:.9}.promo-discount small{font-size:clamp(10px,1.6vw,14px);font-weight:900;letter-spacing:2px}
+.promo-message{display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;min-width:0}
+.promo-message strong{font-size:clamp(21px,4.5vw,43px);font-weight:900;color:#ffdc83;line-height:1.25;text-shadow:0 2px 12px rgba(255,185,51,.45)}
+.promo-message em{font-style:normal;font-size:clamp(15px,2.7vw,25px);font-weight:800;color:#fff;line-height:1.35}
+.promo-arrows{display:flex;flex-direction:column;align-items:center;flex:0 0 auto;color:#ffdc83;font-size:clamp(26px,4vw,39px);font-weight:900;line-height:.48;text-shadow:0 0 12px #ffbf42;animation:promo-bounce 1s ease-in-out infinite}
+.promo-arrows i{font-style:normal}
+.promo-gift{font-size:clamp(35px,6vw,58px);filter:drop-shadow(0 0 12px rgba(255,201,85,.65));animation:promo-gift-float 2.2s ease-in-out infinite}
+.promo-scroll-banner:focus-visible{outline:3px solid #ffdf91;outline-offset:4px}
+@keyframes promo-twinkle{0%{opacity:.22;transform:translateY(0)}50%{opacity:.72}100%{opacity:.22;transform:translateY(-15px)}}
+@keyframes promo-star-pulse{from{opacity:.55}to{opacity:1;text-shadow:0 0 18px #ffd56d,0 0 30px #d99e31}}
+@keyframes promo-bounce{0%,100%{transform:translateY(-4px)}50%{transform:translateY(7px)}}
+@keyframes promo-gift-float{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-6px) rotate(5deg)}}
+@media(max-width:700px){.promo-scroll-banner{min-height:116px;padding:19px 10px 15px;gap:9px}.promo-stars{top:5px;font-size:12px;letter-spacing:3px}.promo-discount{width:58px;height:58px;border-radius:7px}.promo-discount b{font-size:27px}.promo-discount small{font-size:9px}.promo-message{gap:5px}.promo-message strong{font-size:clamp(17px,5vw,25px)}.promo-message em{font-size:clamp(12px,3.5vw,17px)}.promo-arrows{font-size:27px}.promo-gift{font-size:34px}}
+@media(max-width:380px){.promo-scroll-banner{gap:6px;padding-left:7px;padding-right:7px}.promo-discount{width:48px;height:48px}.promo-discount b{font-size:23px}.promo-message strong{font-size:16px}.promo-message em{font-size:11px}.promo-gift{font-size:27px}.promo-arrows{font-size:23px}}
+@media(prefers-reduced-motion:reduce){.promo-scroll-banner:before,.promo-scroll-banner:after,.promo-stars,.promo-arrows,.promo-gift{animation:none}}
