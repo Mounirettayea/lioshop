@@ -85,8 +85,8 @@ async function orderDirect(product:Product){
 }
 async function orderWhatsApp(){
   if(cartItems.length===0){setNotice('السلة ديالك خاوية');return;}
-  if(!customerName.trim()||!customerPhone.trim()||!customerCity.trim()||!customerAddress.trim()||!customerEmail.trim()){
-    setNotice('عافاك عمر معلومات التوصيل والبريد الإلكتروني');
+  if(!customerName.trim()||!customerPhone.trim()||!customerCity.trim()||!customerAddress.trim()){
+    setNotice('عافاك عمر الاسم ورقم الهاتف والمدينة والعنوان');
     return;
   }
   if(WHATSAPP_NUMBER==='212XXXXXXXXX'){
