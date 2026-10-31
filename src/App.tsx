@@ -4,7 +4,7 @@ import AdminPage from './Admin';
 import logo from './logo.png';
 import heroBanner from './lioshop-hero-banner.png';
 import { Search, ShoppingBag, Menu, X, Heart, ArrowUpRight, Crown, Sparkles, Plus, Minus, Trash2 } from 'lucide-react';
-type Category = 'Tout' | 'نسائي' | 'رجالي' | 'أطفال';
+type Category = 'Tout' | 'نسائي' | 'رجالي' | 'أطفال' | 'Femmes' | 'Hommes' | 'Enfants';
 type Product = {id:string;name:string;source?:string;category:string;price:number;oldPrice?:number;label?:string;image:string;images:string[];video?:string;description:string;sizes:string[];colors:string[];isNewArrival?:boolean;isBestSeller?:boolean;isPromotion?:boolean};
 type DbProduct = {id:string|number;name:string;description?:string|null;source?:string|null;price:number|string;compare_at_price:number|string|null;image_url:string|null;image_urls?:string[]|null;images?:string[]|null;video_url?:string|null;sizes?:string[]|null;colors?:string[]|null;category_id:string|null;is_active:boolean;stock_quantity?:number;is_new_arrival:boolean;is_best_seller:boolean;is_promotion:boolean};
 type DbCategory = {id:string;name:string};
@@ -13,7 +13,7 @@ const supabaseKey = (import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || import.met
 const db = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 const money=(n:number)=>`${n.toLocaleString('fr-MA')} DH`;
 // بدّل هاد الرقم برقم واتساب ديالك بصيغة دولية بلا + ولا مسافات.
-const WHATSAPP_NUMBER = '212XXXXXXXXX';
+const WHATSAPP_NUMBER: string = '212681999212';
 export default function App(){
 if (window.location.pathname === '/admin' || window.location.pathname === '/admin/') return <AdminPage />;
 const [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useState(''),[cart,setCart]=useState<Record<string,number>>({}),[cartOpen,setCartOpen]=useState(false),[menuOpen,setMenuOpen]=useState(false),[favorites,setFavorites]=useState<string[]>([]),[notice,setNotice]=useState('');
@@ -50,7 +50,7 @@ const detailId=new URLSearchParams(window.location.search).get('product');
 const detailProduct=detailId?products.find(p=>p.id===detailId):undefined;
 const visible=useMemo(()=>products.filter(p=>(category==='Tout'||p.category===category)&&p.name.toLowerCase().includes(search.toLowerCase())),[products,category,search]);
 const cartItems=products.filter(p=>cart[p.id]),cartCount=Object.values(cart).reduce((s,n)=>s+n,0),cartTotal=cartItems.reduce((s,p)=>s+p.price*cart[p.id],0);
-function selectCategory(c:Category){setCategory(c);setMenuOpen(false);document.getElementById('collection')?.scrollIntoView({behavior:'smooth'});}
+function selectCategory(c:Category){const normalized:Category=c==='Femmes'?'نسائي':c==='Hommes'?'رجالي':c==='Enfants'?'أطفال':c;setCategory(normalized);setMenuOpen(false);document.getElementById('collection')?.scrollIntoView({behavior:'smooth'});}
 function qty(id:string,d:number){setCart(c=>{const n={...c,[id]:(c[id]||0)+d};if(n[id]<=0)delete n[id];return n})}
 function openProduct(id:string){window.location.href='/?product='+encodeURIComponent(id)}
 async function orderDirect(product:Product){
@@ -72,7 +72,7 @@ function orderWhatsApp(){
     setNotice('عافاك عمر جميع معلومات التوصيل');
     return;
   }
-  if(WHATSAPP_NUMBER==='212XXXXXXXXX'){
+  if(!/^\d{10,15}$/.test(WHATSAPP_NUMBER)){
     setNotice('بدّل رقم واتساب في الكود قبل استقبال الطلبات');
     return;
   }
