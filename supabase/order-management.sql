@@ -177,3 +177,7 @@ revoke insert on public.orders from anon, authenticated;
 revoke insert on public.order_items from anon, authenticated;
 revoke execute on function public.is_admin() from public, anon;
 grant execute on function public.is_admin() to authenticated;
+
+-- Disable the superseded single-product endpoints; the storefront uses submit_cart_order.
+revoke all on function public.submit_single_product_order(text,text,text,text,text,uuid,integer,text,text) from public, anon, authenticated;
+revoke all on function public.submit_single_product_order(text,text,text,text,uuid,integer,text,text) from public, anon, authenticated;
