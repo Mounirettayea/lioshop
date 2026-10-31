@@ -81,16 +81,16 @@ function orderWhatsApp(){
     setNotice('عافاك عمر الاسم ورقم الهاتف والمدينة والعنوان');
     return;
   }
-  if(!/^\\+?\\d{8,15}$/.test(customerPhone.replace(/[\\s()-]/g,''))){
+  if(!/^\+?\d{8,15}$/.test(customerPhone.replace(/[\s()-]/g,''))){
     setNotice('دخل رقم هاتف صحيح');
     return;
   }
-  if(!/^\\d{10,15}$/.test(WHATSAPP_NUMBER)){
+  if(!/^\d{10,15}$/.test(WHATSAPP_NUMBER)){
     setNotice('رقم واتساب المتجر غير صالح');
     return;
   }
-  const orderLines=cartItems.map(p=>`- ${p.name} | الكمية: ${cart[p.id]} | الثمن: ${money(p.price*cart[p.id])}\\n  المصدر: ${p.source?.trim()||'غير محدد'}`).join('\\n');
-  const message=`🛍️ طلب جديد من LioShop.ma\\n\\nالمنتجات:\\n${orderLines}\\n\\nالمجموع: ${money(cartTotal)}\\n\\nمعلومات الزبون:\\nالاسم: ${customerName.trim()}\\nالهاتف: ${customerPhone.trim()}\\nالبريد الإلكتروني: ${customerEmail.trim()||'غير متوفر'}\\nالمدينة: ${customerCity.trim()}\\nالعنوان: ${customerAddress.trim()}\\n\\nالمرجو تأكيد الطلب ومصاريف التوصيل.`;
+  const orderLines=cartItems.map(p=>`- ${p.name} | الكمية: ${cart[p.id]} | الثمن: ${money(p.price*cart[p.id])}\n  المصدر: ${p.source?.trim()||'غير محدد'}`).join('\n');
+  const message=`🛍️ طلب جديد من LioShop.ma\n\nالمنتجات:\n${orderLines}\n\nالمجموع: ${money(cartTotal)}\n\nمعلومات الزبون:\nالاسم: ${customerName.trim()}\nالهاتف: ${customerPhone.trim()}\nالبريد الإلكتروني: ${customerEmail.trim()||'غير متوفر'}\nالمدينة: ${customerCity.trim()}\nالعنوان: ${customerAddress.trim()}\n\nالمرجو تأكيد الطلب ومصاريف التوصيل.`;
   const whatsappUrl=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   window.location.href=whatsappUrl;
 }
