@@ -16,7 +16,7 @@ const money=(n:number)=>`${n.toLocaleString('fr-MA')} DH`;
 const WHATSAPP_NUMBER: string = '212681999212';
 export default function App(){
 if (window.location.pathname === '/admin' || window.location.pathname === '/admin/') return <AdminPage />;
-const [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useState(''),[cart,setCart]=useState<Record<string,number>>({}),[cartOpen,setCartOpen]=useState(false),[menuOpen,setMenuOpen]=useState(false),[favorites,setFavorites]=useState<string[]>([]),[notice,setNotice]=useState('');
+const [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useState(''),[cart,setCart]=useState<Record<string,number>>({}),[cartOpen,setCartOpen]=useState(false),[checkoutOpen,setCheckoutOpen]=useState(false),[menuOpen,setMenuOpen]=useState(false),[favorites,setFavorites]=useState<string[]>([]),[notice,setNotice]=useState('');
 const [products,setProducts]=useState<Product[]>([]),[productsLoading,setProductsLoading]=useState(true),[productsError,setProductsError]=useState('');
 useEffect(()=>{
   let cancelled=false;
@@ -44,7 +44,7 @@ useEffect(()=>{
   void loadProducts();
   return ()=>{cancelled=true};
 },[]);
-const [customerName,setCustomerName]=useState(''),[customerPhone,setCustomerPhone]=useState(''),[customerCity,setCustomerCity]=useState(''),[customerAddress,setCustomerAddress]=useState('');
+const [customerName,setCustomerName]=useState(''),[customerPhone,setCustomerPhone]=useState(''),[customerEmail,setCustomerEmail]=useState(''),[customerCity,setCustomerCity]=useState(''),[customerAddress,setCustomerAddress]=useState('');
 const [selectedSize,setSelectedSize]=useState(''),[selectedColor,setSelectedColor]=useState(''),[orderQuantity,setOrderQuantity]=useState(1),[orderSuccess,setOrderSuccess]=useState(''),[detailImage,setDetailImage]=useState(''),[detailVideoActive,setDetailVideoActive]=useState(false);
 const detailId=new URLSearchParams(window.location.search).get('product');
 const detailProduct=detailId?products.find(p=>p.id===detailId):undefined;
@@ -78,16 +78,21 @@ function orderDirect(product:Product){
 function orderWhatsApp(){
   if(cartItems.length===0){setNotice('السلة ديالك خاوية');return;}
   if(!customerName.trim()||!customerPhone.trim()||!customerCity.trim()||!customerAddress.trim()){
-    setNotice('عافاك عمر جميع معلومات التوصيل');
+    setNotice('عافاك عمر الاسم ورقم الهاتف والمدينة والعنوان');
     return;
   }
-  if(!/^\d{10,15}$/.test(WHATSAPP_NUMBER)){
-    setNotice('بدّل رقم واتساب في الكود قبل استقبال الطلبات');
+  if(!/^\\+?\\d{8,15}$/.test(customerPhone.replace(/[\\s()-]/g,''))){
+    setNotice('دخل رقم هاتف صحيح');
     return;
   }
-  const orderLines=cartItems.map(p=>`- ${p.name} | الكمية: ${cart[p.id]} | الثمن: ${money(p.price*cart[p.id])}\n  المصدر: ${p.source?.trim()||'غير محدد'}`).join('\n');
-  const message=`🛍️ طلب جديد من LioShop.ma\n\nالمنتجات:\n${orderLines}\n\nالمجموع: ${money(cartTotal)}\n\nمعلومات الزبون:\nالاسم: ${customerName}\nالهاتف: ${customerPhone}\nالمدينة: ${customerCity}\nالعنوان: ${customerAddress}\n\nالمرجو تأكيد الطلب ومصاريف التوصيل.`;
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
+  if(!/^\\d{10,15}$/.test(WHATSAPP_NUMBER)){
+    setNotice('رقم واتساب المتجر غير صالح');
+    return;
+  }
+  const orderLines=cartItems.map(p=>`- ${p.name} | الكمية: ${cart[p.id]} | الثمن: ${money(p.price*cart[p.id])}\\n  المصدر: ${p.source?.trim()||'غير محدد'}`).join('\\n');
+  const message=`🛍️ طلب جديد من LioShop.ma\\n\\nالمنتجات:\\n${orderLines}\\n\\nالمجموع: ${money(cartTotal)}\\n\\nمعلومات الزبون:\\nالاسم: ${customerName.trim()}\\nالهاتف: ${customerPhone.trim()}\\nالبريد الإلكتروني: ${customerEmail.trim()||'غير متوفر'}\\nالمدينة: ${customerCity.trim()}\\nالعنوان: ${customerAddress.trim()}\\n\\nالمرجو تأكيد الطلب ومصاريف التوصيل.`;
+  const whatsappUrl=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.location.href=whatsappUrl;
 }
 
 if(detailId){
@@ -116,9 +121,14 @@ return <div className="site-shell"><div className="announcement">LIVRAISON PARTO
 <section className="newsletter"><div className="newsletter-mark"><Crown size={25}/></div><div><div className="eyebrow">REJOIGNEZ LE CLUB LIO</div><h2>Un peu plus de style<br/><em>dans votre boîte mail.</em></h2></div><form onSubmit={e=>{e.preventDefault();setNotice('Merci ! Vous êtes inscrit(e) à la newsletter.');window.setTimeout(()=>setNotice(''),2500)}}><label htmlFor="email">Recevez nos nouveautés et offres exclusives.</label><div className="email-field"><input id="email" type="email" placeholder="Votre adresse e-mail" required/><button type="submit" aria-label="S'inscrire"><ArrowUpRight size={20}/></button></div><small>En vous inscrivant, vous acceptez de recevoir nos actualités.</small></form></section></main>
 <footer className="footer"><p>FASHION FOR EVERYONE.</p><div className="footer-links"><a href="#collection">Collection</a><a href="#collection">Livraison & retours</a><a href="#collection">Contact</a><a className="admin-entry" href="/admin" aria-label="Accéder à l’administration">Admin <ArrowUpRight size={13}/></a></div><span className="copyright">© 2026 LioShop. Tous droits réservés.</span></footer>
 {notice&&<div className="toast"><Sparkles size={16}/>{notice}</div>}{cartOpen&&<div className="drawer-backdrop" onClick={()=>setCartOpen(false)}><aside className="cart-drawer" onClick={e=>e.stopPropagation()}><div className="drawer-head"><div><span className="eyebrow">VOTRE SÉLECTION</span><h2>Mon panier <span>({cartCount})</span></h2></div><button className="icon-button" onClick={()=>setCartOpen(false)} aria-label="Fermer le panier"><X size={22}/></button></div>{cartItems.length===0?<div className="cart-empty"><ShoppingBag size={35}/><h3>Votre panier est vide</h3><p>Ajoutez vos pièces préférées pour les retrouver ici.</p><button className="gold-button" onClick={()=>{setCartOpen(false);selectCategory('Tout')}}>DÉCOUVRIR LA COLLECTION</button></div>:<><div className="cart-lines">{cartItems.map(p=><div className="cart-line" key={p.id}><img src={p.image} alt={p.name}/><div className="cart-line-info"><b>{p.name}</b><span>{money(p.price)}</span><div className="quantity"><button onClick={()=>qty(p.id,-1)} aria-label="Diminuer"><Minus size={13}/></button><span>{cart[p.id]}</span><button onClick={()=>qty(p.id,1)} aria-label="Augmenter"><Plus size={13}/></button></div></div><button className="remove-item" onClick={()=>setCart(c=>{const n={...c};delete n[p.id];return n})} aria-label="Supprimer"><Trash2 size={16}/></button></div>)}</div><div className="cart-bottom"><div className="subtotal"><span>Sous-total</span><b>{money(cartTotal)}</b></div><p>Les frais de livraison seront confirmés lors de la commande.</p><div className="whatsapp-checkout" style={{display:'grid',gap:10,marginTop:14}}>
-<label style={{display:'grid',gap:5}}>الاسم الكامل<input value={customerName} onChange={e=>setCustomerName(e.target.value)} placeholder="الاسم الكامل" required style={{padding:11,border:'1px solid #ddd',borderRadius:6,width:'100%',boxSizing:'border-box'}} /></label>
-<label style={{display:'grid',gap:5}}>رقم الهاتف<input type="tel" value={customerPhone} onChange={e=>setCustomerPhone(e.target.value)} placeholder="06XXXXXXXX" required style={{padding:11,border:'1px solid #ddd',borderRadius:6,width:'100%',boxSizing:'border-box'}} /></label>
-<label style={{display:'grid',gap:5}}>المدينة<input value={customerCity} onChange={e=>setCustomerCity(e.target.value)} placeholder="المدينة" required style={{padding:11,border:'1px solid #ddd',borderRadius:6,width:'100%',boxSizing:'border-box'}} /></label>
-<label style={{display:'grid',gap:5}}>العنوان بالتفصيل<textarea value={customerAddress} onChange={e=>setCustomerAddress(e.target.value)} placeholder="العنوان بالتفصيل" required rows={3} style={{padding:11,border:'1px solid #ddd',borderRadius:6,width:'100%',boxSizing:'border-box',resize:'vertical'}} /></label>
-<button type="button" className="gold-button checkout" onClick={orderWhatsApp} style={{background:'#25D366',color:'#fff'}}>🟢 تأكيد الطلب عبر واتساب <ArrowUpRight size={17}/></button>
+{!checkoutOpen?<button type="button" className="gold-button checkout" onClick={()=>setCheckoutOpen(true)}>تأكيد الطلب <ArrowUpRight size={17}/></button>:<>
+<h3 style={{margin:'8px 0 2px'}}>معلومات التوصيل</h3>
+<label style={{display:'grid',gap:5}}>الاسم الكامل<input value={customerName} onChange={e=>setCustomerName(e.target.value)} placeholder="الاسم الكامل" autoComplete="name" required style={{padding:11,border:'1px solid #ddd',borderRadius:6,width:'100%',boxSizing:'border-box'}} /></label>
+<label style={{display:'grid',gap:5}}>رقم الهاتف<input type="tel" value={customerPhone} onChange={e=>setCustomerPhone(e.target.value)} placeholder="06XXXXXXXX" autoComplete="tel" required style={{padding:11,border:'1px solid #ddd',borderRadius:6,width:'100%',boxSizing:'border-box'}} /></label>
+<label style={{display:'grid',gap:5}}>البريد الإلكتروني (اختياري)<input type="email" value={customerEmail} onChange={e=>setCustomerEmail(e.target.value)} placeholder="name@example.com" style={{padding:11,border:'1px solid #ddd',borderRadius:6,width:'100%',boxSizing:'border-box'}} /></label>
+<label style={{display:'grid',gap:5}}>المدينة<input value={customerCity} onChange={e=>setCustomerCity(e.target.value)} placeholder="المدينة" autoComplete="address-level2" required style={{padding:11,border:'1px solid #ddd',borderRadius:6,width:'100%',boxSizing:'border-box'}} /></label>
+<label style={{display:'grid',gap:5}}>العنوان بالتفصيل<textarea value={customerAddress} onChange={e=>setCustomerAddress(e.target.value)} placeholder="العنوان بالتفصيل" autoComplete="street-address" required rows={3} style={{padding:11,border:'1px solid #ddd',borderRadius:6,width:'100%',boxSizing:'border-box',resize:'vertical'}} /></label>
+<button type="button" className="gold-button checkout" onClick={orderWhatsApp} style={{background:'#25D366',color:'#fff'}}>🟢 إرسال الطلب عبر واتساب <ArrowUpRight size={17}/></button>
+<button type="button" onClick={()=>setCheckoutOpen(false)} style={{background:'transparent',border:0,padding:8,cursor:'pointer'}}>رجوع للسلة</button>
+</>}
 </div></div></>}</aside></div>}</div>}
