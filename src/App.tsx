@@ -66,6 +66,7 @@ async function orderDirect(product:Product){
   const message=`🛍️ طلب جديد من LioShop.ma
 
 المنتج: ${product.name}
+المصدر: ${product.source?.trim()||'غير محدد'}
 الثمن للوحدة: ${money(product.price)}
 الكمية: ${orderQuantity}
 المجموع: ${money(product.price*orderQuantity)}
