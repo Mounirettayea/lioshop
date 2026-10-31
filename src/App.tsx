@@ -89,10 +89,6 @@ async function orderWhatsApp(){
     setNotice('عافاك عمر الاسم ورقم الهاتف والمدينة والعنوان');
     return;
   }
-  if(WHATSAPP_NUMBER==='212XXXXXXXXX'){
-    setNotice('بدّل رقم واتساب في الكود قبل استقبال الطلبات');
-    return;
-  }
   if(marketingConsent&&db){await db.rpc('subscribe_newsletter',{p_email:customerEmail.trim(),p_source:'checkout'});}const orderLines=cartItems.map(p=>`- ${p.name} | الكمية: ${cart[p.id]} | الثمن: ${money(p.price*cart[p.id])}\n  المصدر: ${p.source?.trim()||'غير محدد'}`).join('\n');
   const message=`🛍️ طلب جديد من LioShop.ma\n\nالمنتجات:\n${orderLines}\n\nالمجموع: ${money(cartTotal)}\n\nمعلومات الزبون:\nالاسم: ${customerName}\nالهاتف: ${customerPhone}\nالبريد الإلكتروني: ${customerEmail}\nالمدينة: ${customerCity}\nالعنوان: ${customerAddress}\n\nالمرجو تأكيد الطلب ومصاريف التوصيل.`;
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
