@@ -16,7 +16,7 @@ const money=(n:number)=>`${n.toLocaleString('fr-MA')} DH`;
 const WHATSAPP_NUMBER: string = '212681999212';
 export default function App(){
 if (window.location.pathname === '/admin' || window.location.pathname === '/admin/') return <AdminPage />;
-const [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useState(''),[cart,setCart]=useState<Record<string,number>>({}),[cartColors,setCartColors]=useState<Record<string,string>>({}),[cartSizes,setCartSizes]=useState<Record<string,string>>({}),[cartOpen,setCartOpen]=useState(false),[checkoutOpen,setCheckoutOpen]=useState(false),[menuOpen,setMenuOpen]=useState(false),[favorites,setFavorites]=useState<string[]>([]),[notice,setNotice]=useState(''),[orderWhatsappUrl,setOrderWhatsappUrl]=useState('');
+const [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useState(''),[cart,setCart]=useState<Record<string,number>>({}),[cartColors,setCartColors]=useState<Record<string,string>>({}),[cartSizes,setCartSizes]=useState<Record<string,string>>({}),[cartOpen,setCartOpen]=useState(false),[checkoutOpen,setCheckoutOpen]=useState(false),[menuOpen,setMenuOpen]=useState(false),[favorites,setFavorites]=useState<string[]>([]),[notice,setNotice]=useState(''),[orderWhatsappUrl,setOrderWhatsappUrl]=useState('');[orderSubmitting,setOrderSubmitting]=useState(false);
 const [products,setProducts]=useState<Product[]>([]),[productsLoading,setProductsLoading]=useState(true),[productsError,setProductsError]=useState('');
 useEffect(()=>{
   let cancelled=false;
@@ -55,13 +55,21 @@ function qty(id:string,d:number){setCart(c=>{const n={...c,[id]:(c[id]||0)+d};if
 function colorCss(value:string){const v=value.trim().toLowerCase();if(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v))return v;const map:Record<string,string>={'noir':'#171717','black':'#171717','noire':'#171717','أسود':'#171717','اسود':'#171717','blanc':'#ffffff','white':'#ffffff','أبيض':'#ffffff','ابيض':'#ffffff','beige':'#d8c5a5','بيج':'#d8c5a5','gris':'#929292','gray':'#929292','grey':'#929292','رمادي':'#929292','rouge':'#b32635','red':'#c62828','أحمر':'#c62828','احمر':'#c62828','bordeaux':'#741b2b','burgundy':'#741b2b','maroon':'#741b2b','bleu':'#2456a6','blue':'#2456a6','أزرق':'#2456a6','ازرق':'#2456a6','navy':'#172b4d','vert':'#27834a','green':'#27834a','أخضر':'#27834a','اخضر':'#27834a','jaune':'#f2d33d','yellow':'#f2d33d','أصفر':'#f2d33d','اصفر':'#f2d33d','rose':'#e7a3b5','pink':'#e7a3b5','marron':'#795548','brown':'#795548','بني':'#795548','orange':'#ed8b23','violet':'#7546a5','purple':'#7546a5'};return map[v]||'#c9c2b8';}
 function openProduct(id:string){window.location.href='/?product='+encodeURIComponent(id)}
 async function submitOrder(items:Array<{product:Product;quantity:number;size?:string;color?:string}>){
+  if(orderSubmitting)return;
   if(items.length===0){setNotice('السلة ديالك خاوية');return;}
   if(!customerName.trim()||!customerPhone.trim()||!customerCity.trim()||!customerAddress.trim()){setNotice('عافاك عمر الاسم ورقم الهاتف والمدينة والعنوان');return;}
   if(!/^\+?\d{8,15}$/.test(customerPhone.replace(/[\s()-]/g,''))){setNotice('دخل رقم هاتف صحيح');return;}
   if(!db){setNotice('تعذر الاتصال بقاعدة البيانات');return;}
+  setOrderSubmitting(true);
+  setOrderWhatsappUrl('');
+  setOrderSuccess('');
   setNotice('كنسجلو الطلب ديالك...');
   const payload=items.map(item=>({product_id:item.product.id,quantity:item.quantity,selected_size:item.size||null,selected_color:item.color||null}));
-  const {data,error}=await db.rpc('submit_cart_order',{p_customer_name:customerName.trim(),p_customer_phone:customerPhone.trim(),p_customer_city:customerCity.trim(),p_customer_address:customerAddress.trim(),p_customer_email:customerEmail.trim()||null,p_items:payload});
+  let response;
+  try { response=await db.rpc('submit_cart_order',{p_customer_name:customerName.trim(),p_customer_phone:customerPhone.trim(),p_customer_city:customerCity.trim(),p_customer_address:customerAddress.trim(),p_customer_email:customerEmail.trim()||null,p_items:payload}); }
+  catch { setOrderSubmitting(false); setNotice('وقع مشكل فالاتصال. عاود المحاولة من فضلك.'); return; }
+  setOrderSubmitting(false);
+  const {data,error}=response;
   if(error){setNotice('ما قدرناش نسجلو الطلب: '+error.message);return;}
   const result=data as {order_number?:number;total?:number}|null;
   const orderNumber=result?.order_number??'—';
