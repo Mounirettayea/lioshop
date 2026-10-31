@@ -45,7 +45,7 @@ useEffect(()=>{
   return ()=>{cancelled=true};
 },[]);
 const [customerName,setCustomerName]=useState(''),[customerPhone,setCustomerPhone]=useState(''),[customerCity,setCustomerCity]=useState(''),[customerAddress,setCustomerAddress]=useState(''),[customerEmail,setCustomerEmail]=useState(''),[marketingConsent,setMarketingConsent]=useState(false),[newsletterEmail,setNewsletterEmail]=useState(''),[newsletterConsent,setNewsletterConsent]=useState(false),[newsletterBusy,setNewsletterBusy]=useState(false);
-const [selectedSize,setSelectedSize]=useState(''),[selectedColor,setSelectedColor]=useState(''),[orderQuantity,setOrderQuantity]=useState(1),[ordering,setOrdering]=useState(false),[orderSuccess,setOrderSuccess]=useState(''),[detailImage,setDetailImage]=useState(''),[detailVideoActive,setDetailVideoActive]=useState(false);
+const [selectedSize,setSelectedSize]=useState(''),[selectedColor,setSelectedColor]=useState(''),[orderQuantity,setOrderQuantity]=useState(1),[ordering]=useState(false),[orderSuccess]=useState(''),[detailImage,setDetailImage]=useState(''),[detailVideoActive,setDetailVideoActive]=useState(false);
 const detailId=new URLSearchParams(window.location.search).get('product');
 const detailProduct=detailId?products.find(p=>p.id===detailId):undefined;
 const visible=useMemo(()=>products.filter(p=>(category==='Tout'||p.category===category)&&p.name.toLowerCase().includes(search.toLowerCase())),[products,category,search]);
