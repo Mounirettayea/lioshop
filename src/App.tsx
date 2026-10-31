@@ -65,11 +65,8 @@ async function submitOrder(items:Array<{product:Product;quantity:number;size?:st
   setOrderSuccess('');
   setNotice('كنسجلو الطلب ديالك...');
   const payload=items.map(item=>({product_id:item.product.id,quantity:item.quantity,selected_size:item.size||null,selected_color:item.color||null}));
-  let response;
-  try { response=await db.rpc('submit_cart_order',{p_customer_name:customerName.trim(),p_customer_phone:customerPhone.trim(),p_customer_city:customerCity.trim(),p_customer_address:customerAddress.trim(),p_customer_email:customerEmail.trim()||null,p_items:payload}); }
-  catch { setOrderSubmitting(false); setNotice('وقع مشكل فالاتصال. عاود المحاولة من فضلك.'); return; }
+  const {data,error}=await db.rpc('submit_cart_order',{p_customer_name:customerName.trim(),p_customer_phone:customerPhone.trim(),p_customer_city:customerCity.trim(),p_customer_address:customerAddress.trim(),p_customer_email:customerEmail.trim()||null,p_items:payload});
   setOrderSubmitting(false);
-  const {data,error}=response;
   if(error){setNotice('ما قدرناش نسجلو الطلب: '+error.message);return;}
   const result=data as {order_number?:number;total?:number}|null;
   const orderNumber=result?.order_number??'—';
