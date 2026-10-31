@@ -55,7 +55,7 @@ function qty(id:string,d:number){setCart(c=>{const n={...c,[id]:(c[id]||0)+d};if
 function openProduct(id:string){window.location.href='/?product='+encodeURIComponent(id)}
 function orderDirect(product:Product){
   if(!customerName.trim()||!customerPhone.trim()||!customerCity.trim()||!customerAddress.trim()){setNotice('عافاك عمر معلومات التوصيل كاملة');return;}
-  if(!/^\\d{10,15}$/.test(WHATSAPP_NUMBER)){setNotice('رقم واتساب غير صالح، راجع إعدادات المتجر');return;}
+  if(!/^\d{10,15}$/.test(WHATSAPP_NUMBER)){setNotice('رقم واتساب غير صالح، راجع إعدادات المتجر');return;}
   const message=`🛍️ طلب جديد من LioShop.ma
 
 المنتج: ${product.name}
