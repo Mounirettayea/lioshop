@@ -38,3 +38,12 @@
 .admin-editor-page .admin-fields{max-width:1050px;margin:0 auto}
 .admin-editor-page .admin-actions{max-width:1050px;margin:22px auto 0;padding-bottom:24px}
 @media(max-width:650px){.admin-editor-page{padding:14px 12px}.admin-editor-heading h2{font-size:21px}}
+
+
+/* Actions stay directly beneath the selected product row */
+.admin-product-item{display:grid;gap:0}
+.admin-product-item .admin-product-pick{border-radius:8px}
+.admin-product-item:has(.admin-inline-actions) .admin-product-pick{border-radius:8px 8px 0 0}
+.admin-inline-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px 12px;background:#fffaf0;border:1px solid #e8d8b5;border-top:0;border-radius:0 0 8px 8px}
+.admin-inline-actions a{text-decoration:none}
+@media(max-width:650px){.admin-inline-actions{display:grid;grid-template-columns:1fr 1fr}.admin-inline-actions>*{min-width:0}.admin-inline-actions a{grid-column:1/-1}}
