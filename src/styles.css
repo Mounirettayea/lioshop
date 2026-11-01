@@ -426,3 +426,30 @@ body,.site-shell{background:#fff;color:#24211b}
 @media(prefers-reduced-motion:reduce){
  .promo-scroll-banner *, .promo-scroll-banner::before{animation:none!important}
 }
+
+
+/* Floating cart shortcut: stays within reach while browsing the collection */
+.floating-cart{
+  position:fixed;right:24px;bottom:24px;z-index:80;
+  display:flex;align-items:center;gap:12px;min-width:190px;
+  padding:12px 16px;border:1px solid rgba(226,195,127,.85);border-radius:999px;
+  color:#fff;background:linear-gradient(120deg,#17130e 0%,#4b3518 100%);
+  box-shadow:0 9px 28px rgba(0,0,0,.25),0 0 0 4px rgba(201,162,77,.12);
+  cursor:pointer;text-align:left;transition:transform .2s ease,box-shadow .2s ease;
+  animation:floating-cart-in .28s ease-out both;
+}
+.floating-cart:hover{transform:translateY(-3px);box-shadow:0 13px 32px rgba(0,0,0,.3),0 0 0 5px rgba(201,162,77,.17)}
+.floating-cart-icon{position:relative;display:grid;place-items:center;width:40px;height:40px;flex:0 0 40px;border-radius:50%;background:#d4ae62;color:#17130e}
+.floating-cart-count{position:absolute;top:-5px;right:-5px;display:grid;place-items:center;min-width:19px;height:19px;padding:0 4px;border:2px solid #21190e;border-radius:20px;background:#b51e35;color:#fff;font-size:10px;font-weight:900}
+.floating-cart-copy{display:grid;gap:3px;flex:1}
+.floating-cart-copy strong{font-size:13px;font-weight:800}
+.floating-cart-copy small{font-size:11px;color:#f1d99e}
+.floating-cart-arrow{color:#f1d99e}
+@keyframes floating-cart-in{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:700px){
+ .floating-cart{right:14px;bottom:calc(16px + env(safe-area-inset-bottom));min-width:0;gap:9px;padding:9px 13px}
+ .floating-cart-icon{width:37px;height:37px;flex-basis:37px}
+ .floating-cart-copy strong{font-size:12px}
+ .floating-cart-copy small{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){.floating-cart{animation:none;transition:none}}
