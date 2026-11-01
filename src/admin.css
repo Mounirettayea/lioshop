@@ -27,3 +27,14 @@
 .admin-selected-actions a{text-decoration:none}
 .admin-delete-action{color:#a33}
 @media(max-width:650px){.admin-selected-product{align-items:stretch;flex-direction:column}.admin-selected-actions{display:grid;grid-template-columns:1fr 1fr}.admin-selected-actions>*{min-width:0}.admin-selected-actions a{grid-column:1/-1}.admin-product-pick{padding:8px}.admin-product-pick .admin-product-cell img{width:39px;height:39px;flex-basis:39px}}
+
+
+/* Dedicated full-screen product editor */
+.admin-editor-page{position:fixed;inset:0;z-index:1000;overflow-y:auto;margin:0;border:0;border-radius:0;padding:clamp(16px,3vw,36px);background:#f7f5f0;box-sizing:border-box}
+.admin-editor-page>*{max-width:1050px;margin-left:auto;margin-right:auto}
+.admin-editor-heading{max-width:1050px;margin:0 auto 22px;padding-bottom:18px;border-bottom:1px solid #e5dfd3}
+.admin-editor-heading h2{font-size:25px;margin:20px 0 6px}
+.admin-editor-heading p{color:#777;font-size:13px;margin:0;line-height:1.8}
+.admin-editor-page .admin-fields{max-width:1050px;margin:0 auto}
+.admin-editor-page .admin-actions{max-width:1050px;margin:22px auto 0;padding-bottom:24px}
+@media(max-width:650px){.admin-editor-page{padding:14px 12px}.admin-editor-heading h2{font-size:21px}}
