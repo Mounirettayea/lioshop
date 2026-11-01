@@ -5,7 +5,7 @@ import logo from './logo.png';
 import heroBanner from './lioshop-hero-banner.png';
 import { Search, ShoppingBag, Menu, X, Heart, ArrowUpRight, Crown, Sparkles, Plus, Minus, Trash2 } from 'lucide-react';
 type Category = 'Tout' | 'نسائي' | 'رجالي' | 'أطفال' | 'Femmes' | 'Hommes' | 'Enfants';
-type Product = {id:string;name:string;source?:string;category:string;price:number;oldPrice?:number;label?:string;image:string;images:string[];video?:string;description:string;sizes:string[];colors:string[];isNewArrival?:boolean;isBestSeller?:boolean;isPromotion?:boolean};
+type Product = {id:string;name:string;source?:string;category:string;price:number;oldPrice?:number;label?:string;image:string;images:string[];video?:string;description:string;sizes:string[];colors:string[];isNewArrival?:boolean;isBestSeller?:boolean;isPromotion?:boolean;adTitle?:string;adText?:string;adImage?:string};
 type DbProduct = {id:string|number;name:string;description?:string|null;source?:string|null;price:number|string;compare_at_price:number|string|null;image_url:string|null;image_urls?:string[]|null;images?:string[]|null;video_url?:string|null;sizes?:string[]|null;colors?:string[]|null;category_id:string|null;is_active:boolean;stock_quantity?:number;is_new_arrival:boolean;is_best_seller:boolean;is_promotion:boolean;ad_title?:string|null;ad_text?:string|null;ad_image_url?:string|null};
 type DbCategory = {id:string;name:string};
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string | undefined;
