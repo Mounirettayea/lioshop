@@ -46,7 +46,7 @@ useEffect(()=>{
 },[]);
 const [customerName,setCustomerName]=useState(''),[customerPhone,setCustomerPhone]=useState(''),[customerEmail,setCustomerEmail]=useState(''),[customerCity,setCustomerCity]=useState(''),[customerAddress,setCustomerAddress]=useState('');
 const [selectedSize,setSelectedSize]=useState(''),[selectedColor,setSelectedColor]=useState(''),[orderQuantity,setOrderQuantity]=useState(1),[orderSuccess,setOrderSuccess]=useState(''),[detailImage,setDetailImage]=useState(''),[detailVideoActive,setDetailVideoActive]=useState(false);
-const salesMatch=window.location.pathname.match(/^\\/sell\\/([^/]+)\\/?$/);const isSalesLanding=!!salesMatch;const detailId=salesMatch?decodeURIComponent(salesMatch[1]):new URLSearchParams(window.location.search).get('product');
+const salesMatch=window.location.pathname.match(/^\/sell\/([^/]+)\/?$/);const isSalesLanding=!!salesMatch;const detailId=salesMatch?decodeURIComponent(salesMatch[1]):new URLSearchParams(window.location.search).get('product');
 const detailProduct=detailId?products.find(p=>p.id===detailId):undefined;
 const visible=useMemo(()=>products.filter(p=>(category==='Tout'||p.category===category)&&p.name.toLowerCase().includes(search.toLowerCase())),[products,category,search]);
 const cartItems=products.filter(p=>cart[p.id]),cartCount=Object.values(cart).reduce((s,n)=>s+n,0),cartTotal=cartItems.reduce((s,p)=>s+p.price*cart[p.id],0);
