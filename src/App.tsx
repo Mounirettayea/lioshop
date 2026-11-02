@@ -22,13 +22,13 @@ const translations: Record<string, Record<Language, string>> = {
   'Accueil':{ar:'الرئيسية',fr:'Accueil',en:'Home'},'Femmes':{ar:'نساء',fr:'Femmes',en:'Women'},'Hommes':{ar:'رجال',fr:'Hommes',en:'Men'},'Enfants':{ar:'أطفال',fr:'Enfants',en:'Kids'},
   'Nos nouveautés':{ar:'جديدنا',fr:'Nos nouveautés',en:'New arrivals'},'Rechercher...':{ar:'ابحث عن منتج...',fr:'Rechercher...',en:'Search products...'},
   'Rechercher un produit':{ar:'البحث عن منتج',fr:'Rechercher un produit',en:'Search for a product'},'Ouvrir le panier':{ar:'فتح السلة',fr:'Ouvrir le panier',en:'Open cart'},
-  'تأكيد الطلب':{ar:'تأكيد الطلب',fr:'Confirmer la commande',en:'Confirm order'},'الاسم الكامل':{ar:'الاسم الكامل',fr:'Nom complet',en:'Full name'},
+  'تأكيد الطلب':{ar:'تأكيد الطلب',fr:'Confirmer la commande',en:'Confirm order'},'الاسم الكامل *':{ar:'الاسم الكامل *',fr:'Nom complet *',en:'Full name *'},'رقم الهاتف *':{ar:'رقم الهاتف *',fr:'Téléphone *',en:'Phone number *'},'المدينة *':{ar:'المدينة *',fr:'Ville *',en:'City *'},'الاسم الكامل':{ar:'الاسم الكامل',fr:'Nom complet',en:'Full name'},
   'رقم الهاتف':{ar:'رقم الهاتف',fr:'Téléphone',en:'Phone number'},'البريد الإلكتروني (اختياري)':{ar:'البريد الإلكتروني (اختياري)',fr:'E-mail (facultatif)',en:'Email (optional)'},
   'المدينة':{ar:'المدينة',fr:'Ville',en:'City'},'العنوان بالتفصيل':{ar:'العنوان بالتفصيل',fr:'Adresse détaillée',en:'Full address'},
   'معلومات التوصيل':{ar:'معلومات التوصيل',fr:'Informations de livraison',en:'Delivery information'},'ملخص الطلب':{ar:'ملخص الطلب',fr:'Récapitulatif',en:'Order summary'},
   'الكمية':{ar:'الكمية',fr:'Quantité',en:'Quantity'},'المقاس':{ar:'المقاس',fr:'Taille',en:'Size'},'اللون':{ar:'اللون',fr:'Couleur',en:'Color'},
   'المجموع الفرعي':{ar:'المجموع الفرعي',fr:'Sous-total',en:'Subtotal'},'مصاريف التوصيل غادي يتم تأكيدها معاك عبر واتساب.':{ar:'سيتم تأكيد مصاريف التوصيل معك عبر واتساب.',fr:'Les frais de livraison seront confirmés par WhatsApp.',en:'Delivery fees will be confirmed with you on WhatsApp.'},
-  'تأكيد وإرسال الطلب عبر واتساب':{ar:'تأكيد وإرسال الطلب عبر واتساب',fr:'Confirmer et envoyer via WhatsApp',en:'Confirm and send via WhatsApp'},
+  'عافاك عمر معلومات التوصيل كاملة':{ar:'عافاك عمر معلومات التوصيل كاملة',fr:'Veuillez remplir toutes les informations de livraison',en:'Please complete all delivery details'},'دخل رقم هاتف صحيح':{ar:'دخل رقم هاتف صحيح',fr:'Saisissez un numéro de téléphone valide',en:'Enter a valid phone number'},'تأكيد وإرسال الطلب عبر واتساب':{ar:'تأكيد وإرسال الطلب عبر واتساب',fr:'Confirmer et envoyer via WhatsApp',en:'Confirm and send via WhatsApp'},
   'الرجوع وتعديل السلة':{ar:'الرجوع وتعديل السلة',fr:'Retourner et modifier le panier',en:'Back to edit cart'},'الرجوع للسلة':{ar:'الرجوع للسلة',fr:'Retour au panier',en:'Back to cart'},
   'رجوع للتسوق':{ar:'العودة للتسوق',fr:'Retour aux achats',en:'Back to shopping'},'السلة خاوية.':{ar:'السلة فارغة.',fr:'Votre panier est vide.',en:'Your cart is empty.'},
   'كنحمّلو المنتجات...':{ar:'جارٍ تحميل المنتجات...',fr:'Chargement des produits...',en:'Loading products...'},'لا توجد منتجات حالياً':{ar:'لا توجد منتجات حالياً',fr:'Aucun produit pour le moment',en:'No products available'},
@@ -215,7 +215,7 @@ if(checkoutOpen){
 }
 
 if(detailId){
-  if(productsLoading)return <div className="site-shell" data-language={language}><div className="detail-loading">كنحمّلو تفاصيل المنتج...</div></div>;
+  if(productsLoading)return <div className="site-shell" data-language={language}><div className="detail-loading">كنحمّلو تفاصيل المنتج...</div><LanguageFooter language={language} onChange={setLanguage}/></div>;
   if(!detailProduct)return <div className="site-shell" data-language={language}><div className="product-detail-page"><button className="detail-back" onClick={()=>window.location.href='/'}>← الرجوع للمتجر</button><p className="empty-state">{productsError||'هاد المنتج ما لقيناهش أو ما بقاش متوفر.'}</p></div></div>;
   const gallery=detailProduct.images.length?detailProduct.images:[detailProduct.image];
   const activeImage=detailImage&&gallery.includes(detailImage)?detailImage:gallery[0];
