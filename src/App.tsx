@@ -72,26 +72,47 @@ const [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useSt
 const [products,setProducts]=useState<Product[]>([]),[productsLoading,setProductsLoading]=useState(true),[productsError,setProductsError]=useState('');
 useEffect(()=>{
   let cancelled=false;
+  const withTimeout=<T,>(request:PromiseLike<T>,ms:number,message:string):Promise<T>=>new Promise((resolve,reject)=>{
+    const timer=window.setTimeout(()=>reject(new Error(message)),ms);
+    Promise.resolve(request).then(value=>{window.clearTimeout(timer);resolve(value);},error=>{window.clearTimeout(timer);reject(error);});
+  });
   async function loadProducts(){
     if(!db){setProductsError('خاص إعداد VITE_SUPABASE_URL و VITE_SUPABASE_PUBLISHABLE_KEY فـ Vercel باش يبانوا المنتجات.');setProductsLoading(false);return;}
-    const [productResult,categoryResult]=await Promise.all([
-      db.from('products').select('id,name,description,source,price,compare_at_price,image_url,image_urls,images,video_url,sizes,colors,category_id,is_active,stock_quantity,is_new_arrival,is_best_seller,is_promotion,ad_title,ad_text,ad_image_url').eq('is_active',true).order('created_at',{ascending:false}),
-      db.from('categories').select('id,name')
-    ]);
-    if(cancelled)return;
-    if(productResult.error){setProductsError('تعذر تحميل المنتجات: '+productResult.error.message);setProductsLoading(false);return;}
-    const categoryNames=new Map<string,string>(((categoryResult.data??[]) as DbCategory[]).map(c=>[c.id,c.name]));
-    const mapped=((productResult.data??[]) as DbProduct[]).filter(p=>p.is_active).map(p=>{
-      const rawCategory=p.category_id?categoryNames.get(p.category_id)??'':'';
-      const normalized=rawCategory.toLowerCase();
-      const displayCategory=normalized.includes('femme')||normalized.includes('نساء')||normalized.includes('نسائ')?'نسائي':normalized.includes('enfant')||normalized.includes('أطفال')?'أطفال':normalized.includes('homme')||normalized.includes('رجال')?'رجالي':rawCategory||'Autres';
-      const price=Number(p.price)||0;
-      const oldPrice=p.compare_at_price==null?undefined:Number(p.compare_at_price);
-      const gallery=(p.image_urls?.length?p.image_urls:p.images?.length?p.images:p.image_url?[p.image_url]:[]).filter(Boolean);
-      const fallback='https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80';
-      return {id:String(p.id),name:p.name,source:p.source||'',description:p.description||'',category:displayCategory,price,oldPrice,images:gallery,image:gallery[0]||p.image_url||fallback,video:p.video_url||undefined,sizes:p.sizes||[],colors:p.colors||[],label:(p.is_promotion||(oldPrice!==undefined&&oldPrice>price))?'PROMOTION':p.is_new_arrival?'NOUVEAUTÉ':p.is_best_seller?'BEST-SELLER':undefined,isNewArrival:p.is_new_arrival,isBestSeller:p.is_best_seller,isPromotion:p.is_promotion,adTitle:p.ad_title||undefined,adText:p.ad_text||undefined,adImage:p.ad_image_url||undefined} as Product;
-    });
-    setProducts(mapped);setProductsLoading(false);
+    try{
+      const productResult=await withTimeout(
+        db.from('products').select('id,name,description,source,price,compare_at_price,image_url,image_urls,images,video_url,sizes,colors,category_id,is_active,stock_quantity,is_new_arrival,is_best_seller,is_promotion,ad_title,ad_text,ad_image_url').eq('is_active',true).order('created_at',{ascending:false}),
+        15000,
+        'تجاوز تحميل المنتجات الوقت المحدد. تحقق من الاتصال وإعدادات Supabase.'
+      );
+      if(cancelled)return;
+      if(productResult.error)throw productResult.error;
+      let categoryNames=new Map<string,string>();
+      try{
+        const categoryResult=await withTimeout(db.from('categories').select('id,name'),5000,'تعذر تحميل التصنيفات');
+        if(!categoryResult.error)categoryNames=new Map<string,string>(((categoryResult.data??[]) as DbCategory[]).map(c=>[c.id,c.name]));
+      }catch(categoryError){
+        console.warn('LioShop: categories could not be loaded; products will still be shown.',categoryError);
+      }
+      if(cancelled)return;
+      const mapped=((productResult.data??[]) as DbProduct[]).filter(p=>p.is_active).map(p=>{
+        const rawCategory=p.category_id?categoryNames.get(p.category_id)??'':'';
+        const normalized=rawCategory.toLowerCase();
+        const displayCategory=normalized.includes('femme')||normalized.includes('نساء')||normalized.includes('نسائ')?'نسائي':normalized.includes('enfant')||normalized.includes('أطفال')?'أطفال':normalized.includes('homme')||normalized.includes('رجال')?'رجالي':rawCategory||'Autres';
+        const price=Number(p.price)||0;
+        const oldPrice=p.compare_at_price==null?undefined:Number(p.compare_at_price);
+        const gallery=(p.image_urls?.length?p.image_urls:p.images?.length?p.images:p.image_url?[p.image_url]:[]).filter(Boolean);
+        const fallback='https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80';
+        return {id:String(p.id),name:p.name,source:p.source||'',description:p.description||'',category:displayCategory,price,oldPrice,images:gallery,image:gallery[0]||p.image_url||fallback,video:p.video_url||undefined,sizes:p.sizes||[],colors:p.colors||[],label:(p.is_promotion||(oldPrice!==undefined&&oldPrice>price))?'PROMOTION':p.is_new_arrival?'NOUVEAUTÉ':p.is_best_seller?'BEST-SELLER':undefined,isNewArrival:p.is_new_arrival,isBestSeller:p.is_best_seller,isPromotion:p.is_promotion,adTitle:p.ad_title||undefined,adText:p.ad_text||undefined,adImage:p.ad_image_url||undefined} as Product;
+      });
+      setProducts(mapped);
+      setProductsLoading(false);
+    }catch(error){
+      if(cancelled)return;
+      const message=error instanceof Error?error.message:'خطأ غير معروف أثناء تحميل المنتجات';
+      console.error('LioShop products loading failed:',error);
+      setProductsError('تعذر تحميل المنتجات: '+message);
+      setProductsLoading(false);
+    }
   }
   void loadProducts();
   return ()=>{cancelled=true};
