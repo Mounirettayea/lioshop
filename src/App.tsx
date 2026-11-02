@@ -19,7 +19,7 @@ const translatedAttrOriginals = new WeakMap<Element,Record<string,string>>();
 
 type Language = 'ar' | 'fr' | 'en';
 const translations: Record<string, Record<Language, string>> = {
-  'LIVRAISON PARTOUT AU MAROC':{ar:'التوصيل لجميع أنحاء المغرب',fr:'LIVRAISON PARTOUT AU MAROC',en:'DELIVERY THROUGHOUT MOROCCO'},
+  'LIVRAISON PARTOUT AU MAROC':{ar:'التوصيل مجاني في المغرب كامل',fr:'LIVRAISON PARTOUT AU MAROC',en:'DELIVERY THROUGHOUT MOROCCO'},
   'NOUVELLE COLLECTION DISPONIBLE':{ar:'تشكيلة جديدة متوفرة',fr:'NOUVELLE COLLECTION DISPONIBLE',en:'NEW COLLECTION AVAILABLE'},
   'Accueil':{ar:'الرئيسية',fr:'Accueil',en:'Home'},'Femmes':{ar:'نساء',fr:'Femmes',en:'Women'},'Hommes':{ar:'رجال',fr:'Hommes',en:'Men'},'Enfants':{ar:'أطفال',fr:'Enfants',en:'Kids'},
   'Nos nouveautés':{ar:'جديدنا',fr:'Nos nouveautés',en:'New arrivals'},'Rechercher...':{ar:'ابحث عن منتج...',fr:'Rechercher...',en:'Search products...'},
