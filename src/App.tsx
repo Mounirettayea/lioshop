@@ -14,6 +14,8 @@ const db = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) :
 const money=(n:number)=>`${n.toLocaleString('fr-MA')} DH`;
 // بدّل هاد الرقم برقم واتساب ديالك بصيغة دولية بلا + ولا مسافات.
 const WHATSAPP_NUMBER: string = '212681999212';
+const translatedTextOriginals = new WeakMap<Node,string>();
+const translatedAttrOriginals = new WeakMap<Element,Record<string,string>>();
 
 type Language = 'ar' | 'fr' | 'en';
 const translations: Record<string, Record<Language, string>> = {
@@ -100,9 +102,7 @@ useEffect(()=>{
   try{localStorage.setItem('lioshop-language',language)}catch{}
   document.documentElement.lang=language;
   document.documentElement.dir=language==='ar'?'rtl':'ltr';
-  const originals=new WeakMap<Node,string>();
-  const attrs=new WeakMap<Element,Record<string,string>>();
-  let applying=false;
+     let applying=false;
   const apply=()=>{
     if(applying)return; applying=true;
     const root=document.querySelector('.site-shell'); if(!root){applying=false;return;}
@@ -110,21 +110,21 @@ useEffect(()=>{
     let node:Node|null;
     while((node=walker.nextNode())){
       const current=node.nodeValue||'';
-      const original=originals.get(node)??current;
-      if(!originals.has(node))originals.set(node,original);
+      const original=translatedTextOriginals.get(node)??current;
+      if(!translatedTextOriginals.has(node))translatedTextOriginals.set(node,original);
       const key=original.trim();
       const translated=translations[key]?.[language];
-      if(translated!==undefined&&current!==translated)node.nodeValue=current.replace(key,translated);
+      if(translated!==undefined&&current!==translated){const leading=original.match(/^\\s*/)?.[0]||'';const trailing=original.match(/\\s*$/)?.[0]||'';node.nodeValue=leading+translated+trailing;}
       else if(translated===undefined&&current!==original&&translations[(current.trim())])node.nodeValue=translations[current.trim()][language];
     }
     root.querySelectorAll<HTMLElement>('[placeholder],[aria-label],[title]').forEach(el=>{
-      const saved=attrs.get(el)||{};
+      const saved=translatedAttrOriginals.get(el)||{};
       ['placeholder','aria-label','title'].forEach(name=>{
         const value=el.getAttribute(name); if(value===null)return;
         if(saved[name]===undefined)saved[name]=value;
         const translated=translations[saved[name].trim()]?.[language];
         if(translated!==undefined&&value!==translated)el.setAttribute(name,translated);
-      }); attrs.set(el,saved);
+      }); translatedAttrOriginals.set(el,saved);
     });
     applying=false;
   };
