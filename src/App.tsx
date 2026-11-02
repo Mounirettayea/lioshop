@@ -64,10 +64,12 @@ function LanguageFooter({language,onChange}:{language:Language;onChange:(value:L
 
 export default function App(){
 if (window.location.pathname === '/admin' || window.location.pathname === '/admin/') return <AdminPage />;
-const [language,setLanguage]=useState<Language>(()=>{try{return (localStorage.getItem('lioshop-language') as Language)||'ar'}catch{return 'ar'}});\nconst [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useState(''),[cart,setCart]=useState<Record<string,number>>({}),[cartColors,setCartColors]=useState<Record<string,string>>({}),[cartSizes,setCartSizes]=useState<Record<string,string>>({}),[cartOpen,setCartOpen]=useState(false),[checkoutOpen,setCheckoutOpen]=useState(false),[menuOpen,setMenuOpen]=useState(false),[favorites,setFavorites]=useState<string[]>([]),[notice,setNotice]=useState('');
+const [language,setLanguage]=useState<Language>(()=>{try{return (localStorage.getItem('lioshop-language') as Language)||'ar'}catch{return 'ar'}});;
+const [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useState(''),[cart,setCart]=useState<Record<string,number>>({}),[cartColors,setCartColors]=useState<Record<string,string>>({}),[cartSizes,setCartSizes]=useState<Record<string,string>>({}),[cartOpen,setCartOpen]=useState(false),[checkoutOpen,setCheckoutOpen]=useState(false),[menuOpen,setMenuOpen]=useState(false),[favorites,setFavorites]=useState<string[]>([]),[notice,setNotice]=useState('');
 
 
-\nconst [products,setProducts]=useState<Product[]>([]),[productsLoading,setProductsLoading]=useState(true),[productsError,setProductsError]=useState('');
+
+const [products,setProducts]=useState<Product[]>([]),[productsLoading,setProductsLoading]=useState(true),[productsError,setProductsError]=useState('');
 useEffect(()=>{
   let cancelled=false;
   async function loadProducts(){
