@@ -56,7 +56,7 @@ const translations: Record<string, Record<Language, string>> = {
   'معلومات واضحة':{ar:'معلومات واضحة',fr:'Informations claires',en:'Clear information'},'كل التفاصيل قدامك':{ar:'جميع التفاصيل أمامك',fr:'Tous les détails à portée de main',en:'All details at a glance'},
   'طلب ساهل وسريع':{ar:'طلب سهل وسريع',fr:'Commande simple et rapide',en:'Quick and easy ordering'},'غير دقائق وتكمل طلبك':{ar:'أكمل طلبك في دقائق',fr:'Votre commande en quelques minutes',en:'Complete your order in minutes'},
   'توصيل للمغرب كامل':{ar:'توصيل لجميع أنحاء المغرب',fr:'Livraison partout au Maroc',en:'Delivery across Morocco'},'حتى لباب دارك':{ar:'حتى باب منزلك',fr:'Jusqu’à votre porte',en:'Right to your door'},
-  'تسوق بثقة':{ar:'تسوق بثقة',fr:'Achetez en confiance',en:'Shop with confidence'},'اللون':{ar:'اللون',fr:'Couleur',en:'Color'}
+  'تسوق بثقة':{ar:'تسوق بثقة',fr:'Achetez en confiance',en:'Shop with confidence'}
 };
 function LanguageFooter({language,onChange}:{language:Language;onChange:(value:Language)=>void}){
  return <div className="language-switcher" dir="auto"><span>{language==='ar'?'اللغة':language==='fr'?'Langue':'Language'}</span><div role="group" aria-label="Language"><button type="button" className={language==='ar'?'active':''} aria-pressed={language==='ar'} onClick={()=>onChange('ar')}>العربية</button><button type="button" className={language==='fr'?'active':''} aria-pressed={language==='fr'} onClick={()=>onChange('fr')}>Français</button><button type="button" className={language==='en'?'active':''} aria-pressed={language==='en'} onClick={()=>onChange('en')}>English</button></div></div>;
@@ -64,7 +64,7 @@ function LanguageFooter({language,onChange}:{language:Language;onChange:(value:L
 
 export default function App(){
 if (window.location.pathname === '/admin' || window.location.pathname === '/admin/') return <AdminPage />;
-const [language,setLanguage]=useState<Language>(()=>{try{return (localStorage.getItem('lioshop-language') as Language)||'ar'}catch{return 'ar'}});;
+const [language,setLanguage]=useState<Language>(()=>{try{return (localStorage.getItem('lioshop-language') as Language)||'ar'}catch{return 'ar'}});
 const [category,setCategory]=useState<Category>('Tout'),[search,setSearch]=useState(''),[cart,setCart]=useState<Record<string,number>>({}),[cartColors,setCartColors]=useState<Record<string,string>>({}),[cartSizes,setCartSizes]=useState<Record<string,string>>({}),[cartOpen,setCartOpen]=useState(false),[checkoutOpen,setCheckoutOpen]=useState(false),[menuOpen,setMenuOpen]=useState(false),[favorites,setFavorites]=useState<string[]>([]),[notice,setNotice]=useState('');
 
 
