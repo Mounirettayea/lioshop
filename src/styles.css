@@ -518,3 +518,16 @@ body,.site-shell{background:#fff;color:#24211b}
  .sales-hero-footnote{text-align:center;font-size:9px}
 }
 @media(prefers-reduced-motion:reduce){.sales-hero-cta{transition:none}}
+
+/* Storefront language selector and direction */
+.language-switcher{width:100%;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;padding:18px 12px;margin-top:12px;border-top:1px solid rgba(216,180,106,.2);color:#bdb6a8;font-size:12px}
+.language-switcher>div{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}
+.language-switcher button{border:1px solid rgba(216,180,106,.35);background:transparent;color:#d9d1c2;border-radius:20px;padding:8px 15px;font-size:12px;transition:all .2s}
+.language-switcher button:hover,.language-switcher button.active{background:var(--gold);border-color:var(--gold);color:#17140d;font-weight:700}
+.site-shell[data-language="ar"]{direction:rtl}
+.site-shell[data-language="fr"],.site-shell[data-language="en"]{direction:ltr}
+.site-shell[data-language="ar"] .footer-links{margin-right:auto;margin-left:0}
+.site-shell[data-language="ar"] .result-count{margin-right:auto;margin-left:0}
+.site-shell[data-language="ar"] .search-box{direction:rtl}
+.site-shell[data-language="ar"] .newsletter form,.site-shell[data-language="ar"] .detail-order-form{text-align:right}
+@media(max-width:600px){.language-switcher{gap:9px;padding:16px 8px}.language-switcher button{padding:8px 12px;font-size:11px}}
