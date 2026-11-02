@@ -29,7 +29,7 @@ const translations: Record<string, Record<Language, string>> = {
   'المدينة':{ar:'المدينة',fr:'Ville',en:'City'},'العنوان بالتفصيل':{ar:'العنوان بالتفصيل',fr:'Adresse détaillée',en:'Full address'},
   'معلومات التوصيل':{ar:'معلومات التوصيل',fr:'Informations de livraison',en:'Delivery information'},'ملخص الطلب':{ar:'ملخص الطلب',fr:'Récapitulatif',en:'Order summary'},
   'الكمية':{ar:'الكمية',fr:'Quantité',en:'Quantity'},'المقاس':{ar:'المقاس',fr:'Taille',en:'Size'},'اللون':{ar:'اللون',fr:'Couleur',en:'Color'},
-  'المجموع الفرعي':{ar:'المجموع الفرعي',fr:'Sous-total',en:'Subtotal'},'مصاريف التوصيل غادي يتم تأكيدها معاك عبر واتساب.':{ar:'سيتم تأكيد مصاريف التوصيل معك عبر واتساب.',fr:'Les frais de livraison seront confirmés par WhatsApp.',en:'Delivery fees will be confirmed with you on WhatsApp.'},
+  'المجموع الفرعي':{ar:'المجموع الفرعي',fr:'Sous-total',en:'Subtotal'},'':{ar:'سيتم تأكيد مصاريف التوصيل معك عبر واتساب.',fr:'Les frais de livraison seront confirmés par WhatsApp.',en:'Delivery fees will be confirmed with you on WhatsApp.'},
   'عافاك عمر معلومات التوصيل كاملة':{ar:'عافاك عمر معلومات التوصيل كاملة',fr:'Veuillez remplir toutes les informations de livraison',en:'Please complete all delivery details'},'دخل رقم هاتف صحيح':{ar:'دخل رقم هاتف صحيح',fr:'Saisissez un numéro de téléphone valide',en:'Enter a valid phone number'},'تأكيد وإرسال الطلب عبر واتساب':{ar:'تأكيد وإرسال الطلب عبر واتساب',fr:'Confirmer et envoyer via WhatsApp',en:'Confirm and send via WhatsApp'},
   'الرجوع وتعديل السلة':{ar:'الرجوع وتعديل السلة',fr:'Retourner et modifier le panier',en:'Back to edit cart'},'الرجوع للسلة':{ar:'الرجوع للسلة',fr:'Retour au panier',en:'Back to cart'},
   'رجوع للتسوق':{ar:'العودة للتسوق',fr:'Retour aux achats',en:'Back to shopping'},'السلة خاوية.':{ar:'السلة فارغة.',fr:'Votre panier est vide.',en:'Your cart is empty.'},
@@ -152,6 +152,7 @@ function orderDirect(product:Product){
 الكمية: ${orderQuantity}
 المقاس: ${selectedSize||product.sizes[0]||'غير محدد'}
 اللون: ${selectedColor||product.colors[0]||'غير محدد'}
+المصدر: ${product.source?.trim()||'غير محدد'}
 المجموع: ${money(product.price*orderQuantity)}
 
 معلومات الزبون:
@@ -160,7 +161,7 @@ function orderDirect(product:Product){
 المدينة: ${customerCity.trim()}
 العنوان: ${customerAddress.trim()}
 
-المرجو تأكيد الطلب ومصاريف التوصيل.`;
+المرجو تأكيد الطلب.`;
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
   setOrderSuccess('تفتح واتساب برسالة الطلب. ضغط على إرسال باش يوصلنا الطلب.');
 }
@@ -179,7 +180,7 @@ function orderWhatsApp(){
     return;
   }
   const orderLines=cartItems.map(p=>`- ${p.name} | الكمية: ${cart[p.id]} | المقاس: ${cartSizes[p.id]||p.sizes[0]||'غير محدد'} | اللون: ${cartColors[p.id]||p.colors[0]||'غير محدد'} | الثمن: ${money(p.price*cart[p.id])}\n  المصدر: ${p.source?.trim()||'غير محدد'}`).join('\n');
-  const message=`🛍️ طلب جديد من LioShop.ma\n\nالمنتجات:\n${orderLines}\n\nالمجموع: ${money(cartTotal)}\n\nمعلومات الزبون:\nالاسم: ${customerName.trim()}\nالهاتف: ${customerPhone.trim()}\nالبريد الإلكتروني: ${customerEmail.trim()||'غير متوفر'}\nالمدينة: ${customerCity.trim()}\nالعنوان: ${customerAddress.trim()}\n\nالمرجو تأكيد الطلب ومصاريف التوصيل.`;
+  const message=`🛍️ طلب جديد من LioShop.ma\n\nالمنتجات:\n${orderLines}\n\nالمجموع: ${money(cartTotal)}\n\nمعلومات الزبون:\nالاسم: ${customerName.trim()}\nالهاتف: ${customerPhone.trim()}\nالبريد الإلكتروني: ${customerEmail.trim()||'غير متوفر'}\nالمدينة: ${customerCity.trim()}\nالعنوان: ${customerAddress.trim()}\n\nالمرجو تأكيد الطلب.`;
   const whatsappUrl=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   window.location.href=whatsappUrl;
 }
