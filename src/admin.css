@@ -47,3 +47,31 @@
 .admin-inline-actions{display:flex;align-items:center;flex-wrap:wrap;gap:8px;padding:10px 12px;background:#fffaf0;border:1px solid #e8d8b5;border-top:0;border-radius:0 0 8px 8px}
 .admin-inline-actions a{text-decoration:none}
 @media(max-width:650px){.admin-inline-actions{display:grid;grid-template-columns:1fr 1fr}.admin-inline-actions>*{min-width:0}.admin-inline-actions a{grid-column:1/-1}}
+
+
+/* LioShop admin: matching beige, cream and warm-brown identity */
+.admin-page,.admin-editor-page{background:#FAF7F2;color:#352A25}
+.admin-login,.admin-product-form,.admin-products-picker,.admin-table-wrap{background:#fffdf9;border-color:#D8C7B5}
+.admin-top,.admin-editor-heading{border-color:rgba(91,67,49,.18)}
+.admin-login a,.admin-back{color:#A77B58}
+.admin-primary{background:#A77B58;color:#fff;border-color:#A77B58}
+.admin-primary:hover{background:#6B4B36;border-color:#6B4B36}
+.admin-secondary,.admin-icon{background:#FAF7F2;color:#6B4B36;border-color:#D8C7B5}
+.admin-secondary:hover,.admin-icon:hover{background:#E8D8C5;border-color:#A77B58}
+.admin-form input,.admin-fields input,.admin-fields select,.admin-fields textarea,.admin-category-row input{background:#fffdf9;border-color:#D8C7B5;color:#352A25}
+.admin-form input:focus,.admin-fields input:focus,.admin-fields select:focus,.admin-fields textarea:focus{outline-color:#A77B58;border-color:#A77B58}
+.admin-message{background:#E8D8C5;border-color:#D8C7B5;color:#352A25}
+.admin-muted,.admin-login p,.admin-top p,.admin-picker-hint,.admin-category-manager small,.admin-choice-group small,.admin-image-uploader small,.admin-video-uploader small{color:#817366}
+.admin-empty{background:#fffdf9;border-color:#D8C7B5;color:#817366}
+.admin-table th,.admin-table td{border-color:#E8D8C5}
+.admin-table th{background:#FAF7F2;color:#6B4B36}
+.admin-category-manager,.admin-video-uploader{background:#FAF7F2;border-color:#D8C7B5}
+.admin-choice-group,.admin-choice,.admin-image-preview,.admin-image-uploader>input[type=file],.admin-video-uploader>input[type=file]{border-color:#D8C7B5;background:#fffdf9}
+.admin-choice input,.admin-home-flags input{accent-color:#A77B58}
+.admin-product-pick{background:#fffdf9;border-color:#E8D8C5;color:#352A25}
+.admin-product-pick:hover,.admin-product-pick.selected{border-color:#A77B58;background:#FAF7F2}
+.admin-pick-arrow,.admin-selected-product small{color:#A77B58}
+.admin-selected-product,.admin-inline-actions{background:#FAF7F2;border-color:#D8C7B5}
+.admin-selected-product small{color:#6B4B36}
+.admin-delete-action,.admin-icon:last-child{color:#8A5A43}
+.admin-product-item .admin-product-pick{color:#352A25}
