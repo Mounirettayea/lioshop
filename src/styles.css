@@ -603,3 +603,113 @@ html,body,.site-shell{background:#fff;color:#29252a}
 .language-switcher button:hover,.language-switcher button.active{background:#7f1424;border-color:#7f1424;color:#fff}
 .quick-add{display:none!important}
 @media(max-width:700px){.nav{background:#fff;border-color:var(--line)}.nav button,.nav a{color:#393238}}
+
+
+/* LioShop complete boutique palette: cream, beige and warm brown */
+:root{
+ color:#352A25;background:#FAF7F2;color-scheme:light;
+ --gold:#A77B58;--black:#FAF7F2;--muted:#817366;--line:rgba(91,67,49,.18);
+ --lio-cream:#FAF7F2;--lio-beige:#E8D8C5;--lio-brown:#A77B58;--lio-dark:#352A25;
+}
+html,body,.site-shell{background:#FAF7F2!important;color:#352A25}
+.announcement{background:#352A25;color:#FAF7F2}
+.header,.detail-header{background:#FAF7F2;color:#352A25;border-color:var(--line)}
+.nav button,.nav a{color:#514237}
+.nav button:hover,.nav a:hover{color:#A77B58}
+.icon-button{color:#352A25}
+.brand,.brand-name{color:#352A25}
+.nav-dot{background:#A77B58}
+.search-box{color:#817366;border-color:#cdbba7}
+.search-box input{color:#352A25}
+.search-box input::placeholder{color:#958779}
+.category-strip{border-color:var(--line)}
+.category-card{color:#352A25}
+.category-card:hover{background:#E8D8C5!important}
+.category-icon{color:#A77B58;border-color:var(--line)}
+.category-card small,.product-meta,.section-heading>p{color:#817366}
+.hero .eyebrow,.hero .hero-index,.hero .hero-badge{color:#F0DCC6}
+.hero .eyebrow-line,.hero .hero-index span{background:#F0DCC6}
+.hero-badge{border-color:#F0DCC6;background:rgba(53,42,37,.78)}
+.filters{border-color:var(--line)}
+.filter{color:#817366}
+.filter.active{color:#A77B58;border-bottom-color:#A77B58}
+.product-image-wrap,.detail-main-image{background:#E8D8C5}
+.product-label{background:#A77B58;color:#fff}
+.favorite{background:rgba(250,247,242,.95);color:#6B4B36}
+.favorite-active{color:#A77B58}
+.product-card h3,.price-row b{color:#352A25}
+.price-row del{color:#958779}
+.outline-button{color:#6B4B36;border-color:#A77B58}
+.outline-button:hover{background:#A77B58;color:#fff}
+.promise{border-color:var(--line)}
+.promise-item>span,.detail-price b{color:#A77B58}
+.promise-item b{color:#352A25}
+.promise-item p{color:#817366}
+.newsletter{background:#E8D8C5;border:1px solid rgba(91,67,49,.2);color:#352A25}
+.newsletter-mark{border-color:#A77B58;color:#6B4B36}
+.newsletter form label{color:#514237}
+.email-field{border-color:#A98F78}
+.email-field input{color:#352A25}
+.email-field input::placeholder{color:#8D7C6D}
+.email-field button{color:#6B4B36}
+.newsletter form small{color:#817366}
+.footer{background:#FAF7F2;border-color:var(--line)}
+.footer>p,.footer-links a,.copyright{color:#817366}
+.footer-links a:hover{color:#A77B58}
+.footer-links .admin-entry{border-color:var(--line);color:#6B4B36}
+.footer-links .admin-entry:hover{background:#A77B58;color:#fff}
+.gold-button{background:#A77B58;border-color:#A77B58;color:#fff}
+.gold-button:hover{background:#6B4B36;border-color:#6B4B36;color:#fff}
+.cart-drawer{background:#FAF7F2;color:#352A25;border-color:var(--line)}
+.drawer-head{border-color:var(--line)}
+.drawer-head h2,.cart-empty h3{color:#352A25}
+.cart-line{border-color:var(--line)}
+.cart-line-info>b{color:#352A25}
+.cart-line-info>span,.subtotal b{color:#6B4B36}
+.quantity button{border-color:#D5C5B4;color:#352A25}
+.cart-bottom{border-color:var(--line)}
+.cart-bottom>p{color:#817366}
+.toast{background:#352A25;color:#FAF7F2}
+.detail-back{border-color:#A77B58;color:#6B4B36}
+.detail-back:hover{background:#A77B58;color:#fff}
+.detail-category,.detail-breadcrumb{color:#817366}
+.detail-description{color:#625448}
+.detail-thumbnails button{background:#E8D8C5}
+.detail-thumbnails button.selected{border-color:#A77B58}
+.detail-options>label,.detail-order-form>label{color:#514237}
+.detail-options select,.detail-order-form input,.detail-order-form textarea{background:#fffdf9;border-color:#D8C7B5;color:#352A25}
+.detail-options select:focus,.detail-order-form input:focus,.detail-order-form textarea:focus{border-color:#A77B58}
+.detail-size{background:#fffdf9;color:#352A25;border-color:#D8C7B5}
+.detail-size.selected{border-color:#A77B58;background:#A77B58;color:#fff}
+.detail-order-form{border-color:var(--line)}
+.detail-total{border-color:var(--line)}
+.detail-total b{color:#6B4B36}
+.order-success{border-color:#7A9B78;color:#496A48}
+.order-success button{border-color:#7A9B78;color:#496A48}
+.sales-hero-copy{background:radial-gradient(ellipse at 100% 0%,rgba(232,216,197,.2),transparent 38%),linear-gradient(128deg,#352A25 0%,#6B4B36 55%,#352A25 100%);border-color:rgba(167,123,88,.65)}
+.sales-hero-copy h2 em,.sales-kicker,.sales-trust-badge b{color:#E8D8C5}
+.sales-trust-badge{color:#FAF7F2}
+.sales-points span{border-color:rgba(232,216,197,.24)}
+.sales-points span>b{background:#E8D8C5;color:#352A25}
+.sales-hero-cta{background:#A77B58;border-color:#E8D8C5;color:#fff}
+.sales-hero-cta:hover{background:#6B4B36;color:#fff}
+.sales-shortline,.sales-page .detail-price b{color:#6B4B36}
+.sales-page .detail-order-form{background:#FAF7F2;border-color:#E8D8C5}
+.sales-page .detail-order-button{background:#6B4B36;border-color:#6B4B36;color:#fff}
+.sales-page .detail-order-button:hover{background:#352A25;border-color:#352A25}
+.promo-scroll-banner{background:linear-gradient(112deg,#352A25 0%,#6B4B36 48%,#352A25 100%);border-color:#A77B58;color:#FAF7F2}
+.promo-banner-copy strong,.promo-arrows,.promo-spark{color:#E8D8C5}
+.promo-banner-copy small{color:#FAF7F2}
+.promo-sale{background:#A77B58;color:#fff}
+.promo-scroll-banner::before{background:radial-gradient(circle at 18% 50%,rgba(232,216,197,.2),transparent 28%),radial-gradient(circle at 85% 20%,rgba(255,255,255,.1),transparent 24%)}
+.floating-cart{background:linear-gradient(120deg,#352A25 0%,#6B4B36 100%);border-color:#A77B58;color:#FAF7F2}
+.floating-cart-icon{background:#E8D8C5;color:#352A25}
+.floating-cart-count{background:#A77B58;border-color:#352A25;color:#fff}
+.floating-cart-copy small,.floating-cart-arrow{color:#E8D8C5}
+.language-switcher{border-color:var(--line);color:#817366}
+.language-switcher button{border-color:var(--line);color:#514237}
+.language-switcher button:hover,.language-switcher button.active{background:#A77B58;border-color:#A77B58;color:#fff}
+.site-shell[data-language="ar"]{direction:rtl}
+@media(max-width:700px){.nav{background:#FAF7F2;border-color:var(--line)}.nav button,.nav a{color:#514237}}
+/* Keep any legacy inline selection accents aligned with the new palette */
+.cart-color-dot.selected{outline-color:#A77B58!important;border-color:#A77B58!important;box-shadow:0 0 0 2px #FAF7F2,0 0 0 3px #A77B58!important}
