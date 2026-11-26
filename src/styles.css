@@ -734,3 +734,7 @@ html,body,#root,.site-shell{background:#FAF7F2;color:#352A25}
 .product-image-wrap,.detail-main-image,.detail-thumbnails button{background:#E8D8C5}
 .newsletter{background:#E8D8C5;border-color:rgba(91,67,49,.2);color:#352A25}
 .footer,.header,.detail-header,.cart-drawer{background:#FAF7F2;color:#352A25;border-color:var(--line)}
+
+
+/* Keep off-screen product cards cheap to render on mobile */
+@supports (content-visibility: auto){.product-card{content-visibility:auto;contain-intrinsic-size:auto 430px}}
