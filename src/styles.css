@@ -537,7 +537,7 @@ body,.site-shell{background:#fff;color:#24211b}
 :root{color:#29252a;background:#fff;font-family:'DM Sans',sans-serif;--gold:#A77B58;--black:#fff;--muted:#766d72;--line:rgba(91,67,49,.18);--lio-red:#A77B58;--lio-red-dark:#6B4B36;--lio-pink:#FAF7F2;color-scheme:light}
 html,body,.site-shell{background:#fff;color:#29252a}
 .announcement{background:#A77B58;color:#fff}
-.header,.detail-header{background:#fff;color:#29252a;border-color:rgba(127,20,36,.15)}
+.header,.detail-header{background:#fff;color:#29252a;border-color:rgba(91,67,49,.18)}
 .nav button,.nav a{color:#393238}
 .nav button:hover,.nav a:hover{color:#A77B58}
 .icon-button{color:#29252a}
