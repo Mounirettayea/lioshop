@@ -531,3 +531,75 @@ body,.site-shell{background:#fff;color:#24211b}
 .site-shell[data-language="ar"] .search-box{direction:rtl}
 .site-shell[data-language="ar"] .newsletter form,.site-shell[data-language="ar"] .detail-order-form{text-align:right}
 @media(max-width:600px){.language-switcher{gap:9px;padding:16px 8px}.language-switcher button{padding:8px 12px;font-size:11px}}
+
+
+/* LioShop final light storefront theme: white + dark red */
+:root{color:#29252a;background:#fff;font-family:'DM Sans',sans-serif;--gold:#7f1424;--black:#fff;--muted:#766d72;--line:rgba(127,20,36,.17);--lio-red:#7f1424;--lio-red-dark:#5e0d1b;--lio-pink:#fbf3f4;color-scheme:light}
+html,body,.site-shell{background:#fff;color:#29252a}
+.announcement{background:#7f1424;color:#fff}
+.header,.detail-header{background:#fff;color:#29252a;border-color:rgba(127,20,36,.15)}
+.nav button,.nav a{color:#393238}
+.nav button:hover,.nav a:hover{color:#7f1424}
+.icon-button{color:#29252a}
+.brand-name,.brand{color:#29252a}
+.category-strip{border-color:var(--line)}
+.category-card{color:#29252a}
+.category-card:hover{background:#7f14240a}
+.category-icon{color:#7f1424;border-color:var(--line)}
+.category-card small,.product-meta,.section-heading>p{color:#766d72}
+.hero .eyebrow,.hero .hero-index,.hero .hero-badge{color:#e9aeb8}
+.hero .eyebrow-line,.hero .hero-index span{background:#e9aeb8}
+.hero-badge{border-color:#e9aeb8;background:rgba(30,5,10,.72)}
+.filter{color:#766d72}
+.filter.active{color:#7f1424;border-bottom-color:#7f1424}
+.product-image-wrap{background:#f5f1f2}
+.product-label{background:#7f1424;color:#fff}
+.favorite{background:rgba(255,255,255,.94);color:#7f1424}
+.product-card h3{color:#29252a}
+.price-row b{color:#29252a}
+.price-row del{color:#8b8186}
+.outline-button{color:#7f1424;border-color:#7f1424}
+.outline-button:hover{background:#7f1424;color:#fff}
+.promise{border-color:var(--line)}
+.promise-item>span{color:#7f1424}
+.promise-item p{color:#766d72}
+.newsletter{background:#fbf3f4;border:1px solid var(--line);color:#29252a}
+.newsletter-mark{border-color:#7f1424;color:#7f1424}
+.newsletter form label{color:#51484d}
+.email-field{border-color:#b9aab0}
+.email-field input{color:#29252a}
+.email-field input::placeholder{color:#8b8186}
+.email-field button{color:#7f1424}
+.newsletter form small{color:#766d72}
+.footer{border-color:var(--line)}
+.footer>p,.footer-links a,.copyright{color:#766d72}
+.footer-links a:hover{color:#7f1424}
+.gold-button{background:#7f1424;border-color:#7f1424;color:#fff}
+.gold-button:hover{background:#5e0d1b;border-color:#5e0d1b;color:#fff}
+.cart-drawer{background:#fff;color:#29252a;border-color:var(--line)}
+.drawer-head{border-color:var(--line)}
+.drawer-head h2,.cart-empty h3{color:#29252a}
+.cart-line{border-color:var(--line)}
+.cart-line-info>b{color:#29252a}
+.cart-line-info>span,.subtotal b{color:#7f1424}
+.quantity button{border-color:#d8cbd0;color:#29252a}
+.cart-bottom{border-color:var(--line)}
+.cart-bottom>p{color:#766d72}
+.toast{background:#7f1424;color:#fff}
+.detail-back{border-color:#7f1424;color:#7f1424}
+.detail-back:hover{background:#7f1424;color:#fff}
+.detail-main-image{background:#f5f1f2}
+.detail-category,.detail-breadcrumb{color:#766d72}
+.detail-price b{color:#7f1424}
+.detail-description{color:#51484d}
+.detail-thumbnails button.selected{border-color:#7f1424}
+.detail-size.selected{border-color:#7f1424;background:#7f1424}
+.sales-hero-copy{background:radial-gradient(ellipse at 100% 0%,rgba(255,255,255,.12),transparent 38%),linear-gradient(128deg,#2b1018 0%,#641126 55%,#260b14 100%);border-color:rgba(127,20,36,.5)}
+.sales-hero-copy h2 em,.sales-kicker,.sales-trust-badge b{color:#f1bac4}
+.sales-hero-cta{background:#7f1424;border-color:#e3a5b0;color:#fff}
+.sales-hero-cta:hover{background:#5e0d1b;color:#fff}
+.language-switcher{border-color:var(--line);color:#766d72}
+.language-switcher button{border-color:var(--line);color:#51484d}
+.language-switcher button:hover,.language-switcher button.active{background:#7f1424;border-color:#7f1424;color:#fff}
+.quick-add{display:none!important}
+@media(max-width:700px){.nav{background:#fff;border-color:var(--line)}.nav button,.nav a{color:#393238}}
