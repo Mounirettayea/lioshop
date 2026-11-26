@@ -181,7 +181,7 @@ function orderWhatsApp(){
     setNotice('رقم واتساب المتجر غير صالح');
     return;
   }
-  const orderLines=cartItems.map(p=>`- ${p.name} | رمز المنتج: ${p.id} | الكمية: ${cart[p.id]} | المقاس: ${cartSizes[p.id]||p.sizes[0]||'غير محدد'} | اللون: ${cartColors[p.id]||p.colors[0]||'غير محدد'} | الثمن: ${money(p.price*cart[p.id])}`).join('\\n');
+  const orderLines=cartItems.map(p=>`- ${p.name} | رمز المنتج: ${p.id} | الكمية: ${cart[p.id]} | المقاس: ${cartSizes[p.id]||p.sizes[0]||'غير محدد'} | اللون: ${cartColors[p.id]||p.colors[0]||'غير محدد'} | الثمن: ${money(p.price*cart[p.id])}`).join('\n');
   const message=`🛍️ طلب جديد من LioShop.ma\n\nالمنتجات:\n${orderLines}\n\nالمجموع: ${money(cartTotal)}\n\nمعلومات الزبون:\nالاسم: ${customerName.trim()}\nالهاتف: ${customerPhone.trim()}\nالبريد الإلكتروني: ${customerEmail.trim()||'غير متوفر'}\nالمدينة: ${customerCity.trim()}\nالعنوان: ${customerAddress.trim()}\n\nالمرجو تأكيد الطلب.`;
   const whatsappUrl=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   window.location.href=whatsappUrl;
